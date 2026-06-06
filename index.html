@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nord Project - Aislamientos Coruña | Especialistas en Confort Térmico</title>
+    
+    <!-- Google Fonts: Outfit (Geometric & Architectural headers) & Plus Jakarta Sans (Ultra-clean body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js CDN for interactive UI states -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                nordGold: {
+                  DEFAULT: '#235294', // Azul Coquilla
+                  dark: '#1A4580', // Azul Industrial
+                  light: '#E2E8F0' // Plata Cromada / Acero Pulido
+                },
+                nordRed: {
+                  DEFAULT: '#1A4580', // Azul Industrial
+                  dark: '#242629', // Gris Grafito / Titanio Oscuro
+                  light: '#235294' // Azul Coquilla
+                },
+                nordDark: '#242629', // Gris Grafito / Titanio Oscuro
+                nordGray: '#F8F9FA'
+              },
+              fontFamily: {
+                sans: ['Plus Jakarta Sans', 'sans-serif'],
+                outfit: ['Outfit', 'sans-serif'],
+              }
+            }
+          }
+        }
+    </script>
+
+    <style>
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.2 !important; /* Strict parameter constraint */
+        }
+        @media (min-width: 768px) {
+            h1, h2, h3, h4 {
+                line-height: 1.25 !important;
+            }
+        }
+        p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.5 !important; /* Mobile constraint 1.4-1.6 */
+        }
+        .long-text {
+            line-height: 1.65 !important; /* Mobile constraint 1.5-1.75 */
+        }
+        *:focus-visible {
+            outline: 3px solid #1A4580;
+            outline-offset: 2px;
+        }
+        
+        /* Metallic Coated Pipe Button Style */
+        .btn-pipe-coated {
+            position: relative;
+            background: linear-gradient(180deg, #254B80 0%, #1B365D 50%, #12243F 100%);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                inset 0 4px 6px rgba(255, 255, 255, 0.2), 
+                inset 0 -4px 6px rgba(0, 0, 0, 0.4),
+                0 10px 25px rgba(27, 54, 93, 0.5),
+                0 0 15px rgba(37, 75, 128, 0.3);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        .btn-pipe-coated::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
+            pointer-events: none;
+        }
+        .btn-pipe-coated::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.6s;
+        }
+        .btn-pipe-coated:hover::after {
+            left: 100%;
+            transition: 0.8s ease-in-out;
+        }
+        .btn-pipe-coated:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 
+                inset 0 4px 6px rgba(255, 255, 255, 0.3), 
+                inset 0 -4px 6px rgba(0, 0, 0, 0.5),
+                0 15px 30px rgba(27, 54, 93, 0.7),
+                0 0 25px rgba(37, 75, 128, 0.6);
+        }
+        .btn-pipe-coated:active {
+            transform: translateY(1px);
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.6), 
+                0 5px 10px rgba(27, 54, 93, 0.4);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body 
+    x-data="{ 
+        scrollAtTop: true, 
+        isMobileMenuOpen: false, 
+        isModalOpen: false, 
+        isSuccessOpen: false,
+        leadName: '',
+        leadPhone: '',
+        leadService: 'Paredes'
+    }" 
+    @scroll.window="scrollAtTop = (window.pageYOffset > 50) ? false : true"
+    class="bg-white text-nordDark antialiased font-sans"
+>
+
+    <!-- NAVIGATION HEADER -->
+    <header 
+        :class="scrollAtTop ? 'bg-white/10 md:bg-transparent py-5 border-b border-white/10' : 'bg-nordDark/95 backdrop-blur-md shadow-lg py-3 border-b border-white/5'"
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        role="banner"
+    >
+        <div class="max-w-7xl mx-auto px-[5%] flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center gap-2 focus:outline-none" aria-label="Ir al inicio de Nord Project">
+                <img src="images/LOGO Nord Project 116x70.png" alt="Nord Project Logo" class="h-10 md:h-12 w-auto transition-transform duration-300 hover:scale-105">
+            </a>
+
+            <!-- Desktop Menu (Switches cleanly between white/dark based on scroll position) -->
+            <nav class="hidden md:flex items-center gap-6" role="navigation" aria-label="Navegación principal">
+                <a href="index.html#inicio" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Inicio</a>
+                <a href="index.html#beneficios" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Beneficios</a>
+                <a href="index.html#servicios" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Aislamiento</a>
+                <a href="calorifugado.html" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Calorifugado B2B</a>
+                <a href="nosotros.html" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Nosotros</a>
+                <a href="contacto.html" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Contacto</a>
+            </nav>
+
+            <!-- Call-to-Action -->
+            <div class="hidden md:flex items-center gap-4">
+                <button 
+                    @click="isModalOpen = true"
+                    class="bg-gradient-to-b from-[#235294] to-[#1A4580] hover:from-[#2a5fa6] hover:to-[#235294] border border-[#235294]/30 shadow-lg text-white font-outfit font-bold text-lg px-6 py-3 rounded-2xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-blue-900/20 focus:outline-none"
+                    aria-haspopup="dialog"
+                >
+                    Presupuesto Rápido
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button 
+                @click="isMobileMenuOpen = !isMobileMenuOpen"
+                class="text-white md:hidden p-2 focus:outline-none transition-colors duration-300"
+                aria-label="Abrir o cerrar menú móvil"
+                :aria-expanded="isMobileMenuOpen.toString()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path x-show="!isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <path x-show="isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" style="display: none;" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div 
+            x-show="isMobileMenuOpen" 
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-4"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-4"
+            class="md:hidden absolute top-full left-0 right-0 bg-nordDark border-t border-white/10 py-6 px-[5%] flex flex-col gap-4 shadow-xl"
+            style="display: none;"
+        >
+            <a @click="isMobileMenuOpen = false" href="index.html#inicio" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Inicio</a>
+            <a @click="isMobileMenuOpen = false" href="index.html#beneficios" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Beneficios</a>
+            <a @click="isMobileMenuOpen = false" href="index.html#servicios" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Aislamiento</a>
+            <a @click="isMobileMenuOpen = false" href="calorifugado.html" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Calorifugado B2B</a>
+            <a @click="isMobileMenuOpen = false" href="nosotros.html" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Nosotros</a>
+            <a @click="isMobileMenuOpen = false" href="contacto.html" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Contacto</a>
+            <button 
+                @click="isMobileMenuOpen = false; isModalOpen = true"
+                class="w-full bg-[#235294] hover:bg-blue-600 text-white font-outfit font-bold text-lg py-4 rounded-2xl transition-colors duration-200 text-center mt-2"
+            >
+                Presupuesto Rápido
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section 
+        id="inicio"
+        class="relative min-h-screen pt-24 md:pt-32 pb-[12%] md:pb-[10%] flex items-center bg-cover bg-center overflow-hidden" 
+        style="background-image: url('images/hero_bg_hd.png');"
+    >
+        <!-- Background Dark Gradient Overlay with blur (efecto difuminado/difumado) -->
+        <div class="absolute inset-0 bg-gradient-to-r from-nordDark via-nordDark/85 to-transparent backdrop-blur-[1.5px] z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-[5%] w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <!-- Hero Left Side Text (Silo/Brand Content with high structural font styling) -->
+            <div class="lg:col-span-7 text-white space-y-6">
+                <h2 class="text-[#E2E8F0] font-outfit font-bold tracking-wider text-base md:text-lg uppercase opacity-90">
+                    Nord Project - Aislamientos Coruña
+                </h2>
+                
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight drop-shadow-md">
+                    AISLAMOS HOY,<br>
+                    PROTEGEMOS <span class="text-[#E2E8F0] font-extrabold" style="text-shadow: 0 0 8px rgba(255, 255, 255, 0.35), 0 0 15px rgba(35, 82, 148, 0.95), 0 0 30px rgba(35, 82, 148, 0.75);">MAÑANA.</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-300 max-w-2xl leading-relaxed">
+                    Líderes en aislamiento térmico en Galicia: Confort para hogares y eficiencia en calorifugado industrial B2B.
+                </p>
+
+                <!-- Cobalt Blue Separator Line -->
+                <div class="w-16 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full shadow-[0_0_8px_rgba(99,179,237,0.5)]"></div>
+
+                <!-- Glassmorphic Trust Badges -->
+                <div class="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4" aria-label="Garantías de servicio">
+                    <div class="flex items-center gap-3 bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-lg transition-transform duration-300 hover:scale-[1.03]">
+                        <svg class="w-6 h-6 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span class="text-base font-bold text-white">Garantía Real</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-lg transition-transform duration-300 hover:scale-[1.03]">
+                        <svg class="w-6 h-6 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-base font-bold text-white">Obra en 24h</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-lg transition-transform duration-300 hover:scale-[1.03]">
+                        <svg class="w-6 h-6 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-base font-bold text-white">Ahorro Directo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Right Side Glassmorphic Form Card -->
+            <div class="lg:col-span-5 w-full">
+                <div class="backdrop-blur-md bg-nordDark/35 border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden transition-all duration-500 hover:shadow-nordRed/20 hover:border-white/20">
+                    <!-- Subtle gradient glow bar (shiny clad pipe style) -->
+                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1B365D] via-[#E2E8F0] to-[#1B365D] shadow-[0_1px_8px_rgba(255,255,255,0.3)]"></div>
+                    
+                    <h3 class="text-xl md:text-2xl font-extrabold text-white mb-2 flex items-center gap-2">
+                        <span>📥</span> Solicita Tu Presupuesto Gratis
+                    </h3>
+                    <p class="text-base text-gray-300 mb-6 font-medium">Estudio térmico sin compromiso para tu hogar.</p>
+
+                    <form 
+                        @submit.prevent="isSuccessOpen = true" 
+                        class="space-y-5"
+                    >
+                        <div>
+                            <label class="block text-sm font-bold text-gray-200 mb-2" for="hero-name">Nombre Completo</label>
+                            <input 
+                                type="text" 
+                                id="hero-name" 
+                                x-model="leadName"
+                                required 
+                                placeholder="Escribe tu nombre" 
+                                class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-base text-white placeholder-gray-400 focus:ring-2 focus:ring-nordGold focus:border-nordGold focus:outline-none transition-all duration-200"
+                            >
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-200 mb-2" for="hero-phone">Teléfono de Contacto</label>
+                            <input 
+                                type="tel" 
+                                id="hero-phone" 
+                                x-model="leadPhone"
+                                required 
+                                placeholder="Ej: 600 000 000" 
+                                class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-base text-white placeholder-gray-400 focus:ring-2 focus:ring-nordGold focus:border-nordGold focus:outline-none transition-all duration-200"
+                            >
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-200 mb-2" for="hero-service">¿Qué zona necesitas aislar?</label>
+                            <select 
+                                id="hero-service" 
+                                x-model="leadService"
+                                class="w-full bg-white/5 border border-white/15 rounded-2xl px-4 py-3 text-base text-white focus:ring-2 focus:ring-nordGold focus:border-nordGold focus:outline-none transition-all duration-200"
+                                style="color-scheme: dark;"
+                            >
+                                <option value="Paredes (Insuflado)" class="bg-nordDark">Paredes (Cámaras de Aire)</option>
+                                <option value="Techos / Áticos" class="bg-nordDark">Techos y Cubiertas</option>
+                                <option value="Fachadas (SATE / Proyectado)" class="bg-nordDark">Fachadas Completas</option>
+                                <option value="Solución Técnica Integral" class="bg-nordDark">Estudio Integral del Edificio</option>
+                            </select>
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            class="w-full btn-pipe-coated text-white font-outfit font-extrabold text-lg py-4 rounded-full tracking-wider uppercase transition-all duration-300"
+                        >
+                            👉 Calcular Presupuesto
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METALLIC PIPE DIVIDER 1 -->
+    <div class="w-full overflow-hidden bg-transparent leading-[0] select-none -mb-1 relative z-20" aria-hidden="true">
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-10">
+            <defs>
+                <!-- 3D Cylindrical Chrome/Steel Gradient -->
+                <linearGradient id="pipeMetal1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#151719" />
+                    <stop offset="12%" stop-color="#3A3F44" />
+                    <stop offset="30%" stop-color="#7F878D" />
+                    <stop offset="48%" stop-color="#E2E8F0" />
+                    <stop offset="52%" stop-color="#FFFFFF" />
+                    <stop offset="58%" stop-color="#E2E8F0" />
+                    <stop offset="78%" stop-color="#7F878D" />
+                    <stop offset="92%" stop-color="#3A3F44" />
+                    <stop offset="100%" stop-color="#151719" />
+                </linearGradient>
+                <!-- Cladding Joint Straps Metallic Gradient -->
+                <linearGradient id="pipeStrap1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#2D3033" />
+                    <stop offset="25%" stop-color="#9AA0A6" />
+                    <stop offset="50%" stop-color="#FFFFFF" />
+                    <stop offset="75%" stop-color="#9AA0A6" />
+                    <stop offset="100%" stop-color="#2D3033" />
+                </linearGradient>
+                <!-- Shadow effect for 3D depth -->
+                <filter id="pipeShadow1" x="-5%" y="-10%" width="110%" height="140%">
+                    <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.35"/>
+                </filter>
+            </defs>
+            
+            <!-- Main Insulated Clad Pipe -->
+            <rect y="8" width="1440" height="24" fill="url(#pipeMetal1)" filter="url(#pipeShadow1)" />
+            
+            <!-- Metal sheet seams/rivet lines (repeating dots for realistic pre-fabricated look) -->
+            <g stroke="#1F2124" stroke-width="0.5" fill="#E2E8F0" opacity="0.8">
+                <!-- Seam 1 (y = 12) -->
+                <line x1="0" y1="12" x2="1440" y2="12" stroke="#4E5357" stroke-dasharray="8 30" />
+                <!-- Seam 2 (y = 28) -->
+                <line x1="0" y1="28" x2="1440" y2="28" stroke="#4E5357" stroke-dasharray="12 40" />
+            </g>
+
+            <!-- Cladding Joint Collars (Abrazaderas) -->
+            <!-- Collar 1 -->
+            <g filter="url(#pipeShadow1)">
+                <rect x="250" y="6" width="18" height="28" rx="2" fill="url(#pipeStrap1)" />
+                <line x1="250" y1="6" x2="250" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <line x1="268" y1="6" x2="268" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <circle cx="259" cy="10" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+                <circle cx="259" cy="30" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+            </g>
+            
+            <!-- Collar 2 -->
+            <g filter="url(#pipeShadow1)">
+                <rect x="650" y="6" width="18" height="28" rx="2" fill="url(#pipeStrap1)" />
+                <line x1="650" y1="6" x2="650" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <line x1="668" y1="6" x2="668" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <circle cx="659" cy="10" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+                <circle cx="659" cy="30" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+            </g>
+            
+            <!-- Collar 3 -->
+            <g filter="url(#pipeShadow1)">
+                <rect x="1050" y="6" width="18" height="28" rx="2" fill="url(#pipeStrap1)" />
+                <line x1="1050" y1="6" x2="1050" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <line x1="1068" y1="6" x2="1068" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <circle cx="1059" cy="10" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+                <circle cx="1059" cy="30" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+            </g>
+
+            <!-- Hanger Wall Support brackets (mounting points) -->
+            <rect x="450" y="2" width="10" height="4" fill="#2D3033" />
+            <rect x="447" y="0" width="16" height="2" fill="#E2E8F0" />
+            <rect x="850" y="2" width="10" height="4" fill="#2D3033" />
+            <rect x="847" y="0" width="16" height="2" fill="#E2E8F0" />
+            <rect x="1250" y="2" width="10" height="4" fill="#2D3033" />
+            <rect x="1247" y="0" width="16" height="2" fill="#E2E8F0" />
+        </svg>
+    </div>
+
+    <!-- BENEFICIOS SECTION -->
+    <section 
+        id="beneficios"
+        class="py-10 md:py-14 bg-white relative z-10"
+        role="region" 
+        aria-label="Beneficios del aislamiento"
+    >
+        <div class="max-w-7xl mx-auto px-[5%] space-y-8">
+            <!-- Section Title -->
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-nordDark tracking-tight">
+                    El Ahorro Energético y Confort que Necesitas en tu Hogar
+                </h2>
+                <div class="w-20 h-1 bg-nordGold mx-auto rounded-full"></div>
+                <p class="text-lg text-gray-600 font-medium">
+                    Aislar térmicamente no es un gasto, es una inversión amortizable desde el primer invierno.
+                </p>
+            </div>
+
+            <!-- Bento-Inspired Benefit Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1: Confort -->
+                <div class="bg-nordGray/60 p-6 rounded-3xl border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-2xl bg-nordGold/10 flex items-center justify-center text-nordGold mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-nordDark mb-2">Confort Térmico</h3>
+                    <p class="text-base text-gray-600 font-medium">
+                        Mantén temperaturas estables todo el año. Disfruta de la calidez óptima en tu casa sin depender de la calefacción constante.
+                    </p>
+                </div>
+
+                <!-- Card 2: Costes -->
+                <div class="bg-nordGray/60 p-6 rounded-3xl border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-2xl bg-nordGold/10 flex items-center justify-center text-nordGold mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-nordDark mb-2">Reducción de Costes</h3>
+                    <p class="text-base text-gray-600 font-medium">
+                        Ahorra hasta un 40% directo en tu recibo de energía eléctrica o gas en épocas de frío y calor intenso.
+                    </p>
+                </div>
+
+                <!-- Card 3: Humedades -->
+                <div class="bg-nordGray/60 p-6 rounded-3xl border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-2xl bg-nordGold/10 flex items-center justify-center text-nordGold mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7-7-7 7h14z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-nordDark mb-2">Adiós Humedades</h3>
+                    <p class="text-base text-gray-600 font-medium">
+                        Elimina condensaciones molestas y moho en muros interiores. Protege la salud pulmonar de toda tu familia.
+                    </p>
+                </div>
+
+                <!-- Card 4: Sin Obras -->
+                <div class="bg-nordGray/60 p-6 rounded-3xl border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-2xl bg-nordGold/10 flex items-center justify-center text-nordGold mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-nordDark mb-2">Sin Obras Molestas</h3>
+                    <p class="text-base text-gray-600 font-medium">
+                        Aislamiento rápido e higiénico mediante inyección exterior o interior. Sin polvo, escombros ni ruidos prolongados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS SECTION (B2C Silo) -->
+    <section 
+        id="servicios"
+        class="py-10 md:py-14 bg-nordGray relative z-10"
+        role="region" 
+        aria-label="Nuestros servicios de aislamiento"
+    >
+        <div class="max-w-7xl mx-auto px-[5%] space-y-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-nordDark tracking-tight">
+                    ¿Qué solución térmica necesita tu propiedad?
+                </h2>
+                <div class="w-20 h-1 bg-nordGold mx-auto rounded-full"></div>
+                <p class="text-lg text-gray-600 font-medium">
+                    Analizamos las debilidades térmicas del edificio para aplicar el material y sistema que maximice la eficiencia.
+                </p>
+            </div>
+
+            <!-- Services Grid with dynamic layouts and unique, high-quality images -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Service Card 1: Insuflado -->
+                <article class="group bg-white rounded-3xl overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-xl hover:border-nordGold/30">
+                    <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                        <!-- fotorrealistic Unsplash image of cavity wall filling/technician -->
+                        <img 
+                            src="images/insuflado.png" 
+                            alt="Aislamiento insuflado en cámara de aire por operario cualificado" 
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                        >
+                        <!-- Premium gradient overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-nordDark/60 to-transparent"></div>
+                        <h3 class="absolute bottom-6 left-6 text-2xl font-bold text-white font-outfit flex items-center gap-3">
+                            <span class="bg-nordDark/70 backdrop-blur-md p-2 rounded-xl border border-white/20 inline-flex shadow-lg shadow-black/20" aria-hidden="true">
+                                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Double wall cavity representation -->
+                                    <line x1="4" y1="2" x2="4" y2="22" stroke="#9AA0A6" stroke-width="2.5" stroke-linecap="round" />
+                                    <line x1="20" y1="2" x2="20" y2="22" stroke="#9AA0A6" stroke-width="2.5" stroke-linecap="round" />
+                                    <!-- Injection nozzle hose -->
+                                    <path d="M1 12H8" stroke="#E2E8F0" stroke-width="2" stroke-linecap="round" />
+                                    <!-- Nozzle head spraying -->
+                                    <path d="M8 9.5L13 12L8 14.5V9.5Z" fill="#1B365D" stroke="#E2E8F0" stroke-width="1.5" stroke-linejoin="round" />
+                                    <!-- Expanding wool insulation particles/fibers -->
+                                    <circle cx="16" cy="6" r="1.5" fill="#E2E8F0" />
+                                    <circle cx="12" cy="7.5" r="2" fill="#E2E8F0" />
+                                    <circle cx="17" cy="11.5" r="1.5" fill="#E2E8F0" />
+                                    <circle cx="11.5" cy="14" r="2.5" fill="#E2E8F0" />
+                                    <circle cx="16" cy="16.5" r="1.8" fill="#E2E8F0" />
+                                    <circle cx="11" cy="19" r="2" fill="#E2E8F0" />
+                                    <circle cx="15.5" cy="20.5" r="1.5" fill="#E2E8F0" />
+                                </svg>
+                            </span>
+                            Aislamiento Insuflado
+                        </h3>
+                    </div>
+                    <div class="p-6 md:p-8 space-y-4">
+                        <p class="text-base text-gray-700 font-medium">
+                            Nuestra solución estrella para fachadas con doble tabique o cámaras de aire vacías. Inyectamos lanas minerales de alta densidad o celulosa ecológica a presión rellenando todo el vacío de tus muros en tiempo récord.
+                        </p>
+                        <div class="flex items-center justify-between pt-2">
+                            <span class="text-sm font-bold text-nordGold font-outfit uppercase tracking-wider">Perfecto para Cámaras de aire</span>
+                            <button 
+                                @click="isModalOpen = true; leadService = 'Paredes (Insuflado)'"
+                                class="text-[#1A4580] font-bold hover:text-[#235294] transition-colors duration-200 text-base"
+                            >
+                                Saber más →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Service Card 2: Trasdosados -->
+                <article class="group bg-white rounded-3xl overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-xl hover:border-nordGold/30">
+                    <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                        <!-- fotorrealistic drywall installation work -->
+                        <img 
+                            src="images/trasdosado.png" 
+                            alt="Montaje de trasdosados térmicos de placas de yeso y lana de roca" 
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-nordDark/60 to-transparent"></div>
+                        <h3 class="absolute bottom-6 left-6 text-2xl font-bold text-white font-outfit flex items-center gap-3">
+                            <span class="bg-nordDark/70 backdrop-blur-md p-2 rounded-xl border border-white/20 inline-flex shadow-lg shadow-black/20" aria-hidden="true">
+                                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Backing solid wall blocks -->
+                                    <path d="M2 3H6V21H2V3Z" fill="#2D3033" stroke="#4E5357" stroke-width="1" />
+                                    <line x1="2" y1="9" x2="6" y2="9" stroke="#4E5357" stroke-width="1" />
+                                    <line x1="2" y1="15" x2="6" y2="15" stroke="#4E5357" stroke-width="1" />
+                                    <!-- Metal Stud (Galvanized Profile) -->
+                                    <path d="M7 4H9V20H7" stroke="#E2E8F0" stroke-width="1.5" stroke-linejoin="round" />
+                                    <path d="M15 4H17V20H15" stroke="#E2E8F0" stroke-width="1.5" stroke-linejoin="round" />
+                                    <!-- Insulation core (Mineral Wool panel) -->
+                                    <rect x="9.5" y="4" width="5" height="16" fill="#1B365D" stroke="#235294" stroke-width="0.5" rx="0.5" />
+                                    <line x1="10.5" y1="6" x2="13.5" y2="9" stroke="#E2E8F0" stroke-width="0.8" />
+                                    <line x1="10.5" y1="11" x2="13.5" y2="14" stroke="#E2E8F0" stroke-width="0.8" />
+                                    <line x1="10.5" y1="16" x2="13.5" y2="19" stroke="#E2E8F0" stroke-width="0.8" />
+                                    <!-- Drywall Board (Placo) -->
+                                    <path d="M18 3H22V21H18V3Z" fill="#E2E8F0" stroke="#FFFFFF" stroke-width="1" />
+                                    <line x1="20" y1="3" x2="20" y2="21" stroke="#9AA0A6" stroke-width="1" stroke-dasharray="1 2" />
+                                </svg>
+                            </span>
+                            Trasdosados Térmicos
+                        </h3>
+                    </div>
+                    <div class="p-6 md:p-8 space-y-4">
+                        <p class="text-base text-gray-700 font-medium">
+                            Instalamos trasdosados con placas de yeso laminado y lanas de roca de alto rendimiento en paredes interiores que no disponen de cámara de aire. Aislamos el frío directo de la piedra de forma limpia.
+                        </p>
+                        <div class="flex items-center justify-between pt-2">
+                            <span class="text-sm font-bold text-nordGold font-outfit uppercase tracking-wider">Muros sólidos y piedra</span>
+                            <button 
+                                @click="isModalOpen = true; leadService = 'Paredes (Insuflado)'"
+                                class="text-[#1A4580] font-bold hover:text-[#235294] transition-colors duration-200 text-base"
+                            >
+                                Saber más →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Service Card 3: Techos -->
+                <article class="group bg-white rounded-3xl overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-xl hover:border-nordGold/30">
+                    <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                        <!-- fotorrealistic modern wooden insulated loft/attic ceiling -->
+                        <img 
+                            src="images/techos.png" 
+                            alt="Aislamiento térmico de techos, cubiertas y buhardillas de madera" 
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-nordDark/60 to-transparent"></div>
+                        <h3 class="absolute bottom-6 left-6 text-2xl font-bold text-white font-outfit flex items-center gap-3">
+                            <span class="bg-nordDark/70 backdrop-blur-md p-2 rounded-xl border border-white/20 inline-flex shadow-lg shadow-black/20" aria-hidden="true">
+                                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Sloped roof structure (beams) -->
+                                    <path d="M2 19L12 8L22 19" stroke="#9AA0A6" stroke-width="2" stroke-linecap="round" />
+                                    <!-- Roof tiles layer -->
+                                    <path d="M4 17L12 9L20 17" stroke="#4E5357" stroke-width="1.5" stroke-linecap="round" />
+                                    <!-- Mineral wool insulation blankets below rafters -->
+                                    <path d="M4 21L12 13L20 21" stroke="#1B365D" stroke-width="3" stroke-linecap="round" />
+                                    <path d="M5 21L6 20M9 21L11 19M13 21L15 19M17 21L19 19" stroke="#E2E8F0" stroke-width="0.8" />
+                                    <!-- Heat rays escaping/blocked -->
+                                    <path d="M12 2V5" stroke="#E2E8F0" stroke-width="1.5" stroke-linecap="round" />
+                                    <path d="M9 3.5L12 5.5L15 3.5" stroke="#E2E8F0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                            Aislamiento en Techos
+                        </h3>
+                    </div>
+                    <div class="p-6 md:p-8 space-y-4">
+                        <p class="text-base text-gray-700 font-medium">
+                            El calor tiende a ascender de forma natural y perderse a través de las cubiertas superiores. Protegemos tejados, falsos techos y buhardillas utilizando aislamiento por proyección o mantas minerales de alta eficiencia.
+                        </p>
+                        <div class="flex items-center justify-between pt-2">
+                            <span class="text-sm font-bold text-nordGold font-outfit uppercase tracking-wider">Evita pérdidas superiores</span>
+                            <button 
+                                @click="isModalOpen = true; leadService = 'Techos / Áticos'"
+                                class="text-[#1A4580] font-bold hover:text-[#235294] transition-colors duration-200 text-base"
+                            >
+                                Saber más →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Service Card 4: Fachadas y Proyectados -->
+                <article class="group bg-white rounded-3xl overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-xl hover:border-nordGold/30">
+                    <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                        <!-- fotorrealistic scaffolding and building exterior facade under work -->
+                        <img 
+                            src="images/proyectado.png" 
+                            alt="Aplicación de proyectado térmico e impermeabilización en fachadas" 
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-nordDark/60 to-transparent"></div>
+                        <h3 class="absolute bottom-6 left-6 text-2xl font-bold text-white font-outfit flex items-center gap-3">
+                            <span class="bg-nordDark/70 backdrop-blur-md p-2 rounded-xl border border-white/20 inline-flex shadow-lg shadow-black/20" aria-hidden="true">
+                                <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Inner concrete wall block -->
+                                    <rect x="2" y="3" width="9" height="18" fill="#2D3033" stroke="#4E5357" stroke-width="1" rx="0.5" />
+                                    <line x1="2" y1="9" x2="11" y2="9" stroke="#4E5357" stroke-width="1" />
+                                    <line x1="2" y1="15" x2="11" y2="15" stroke="#4E5357" stroke-width="1" />
+                                    <!-- SATE insulation board panel -->
+                                    <rect x="11.5" y="3" width="6" height="18" fill="#1B365D" stroke="#235294" stroke-width="0.5" rx="0.5" />
+                                    <path d="M12.5 5L16.5 9M12.5 11L16.5 15M12.5 17L16.5 21" stroke="#E2E8F0" stroke-width="0.8" />
+                                    <!-- Outer mortar render / SATE coating -->
+                                    <path d="M18.5 3H22V21H18.5V3Z" fill="#E2E8F0" stroke="#FFFFFF" stroke-width="0.8" />
+                                    <!-- Projection spray particles -->
+                                    <circle cx="19.5" cy="6" r="1" fill="#1B365D" />
+                                    <circle cx="21" cy="9" r="0.8" fill="#1B365D" />
+                                    <circle cx="19.5" cy="12" r="1" fill="#1B365D" />
+                                    <circle cx="21.5" cy="15" r="0.8" fill="#1B365D" />
+                                    <circle cx="20" cy="18" r="1" fill="#1B365D" />
+                                </svg>
+                            </span>
+                            Fachadas y Proyectados
+                        </h3>
+                    </div>
+                    <div class="p-6 md:p-8 space-y-4">
+                        <p class="text-base text-gray-700 font-medium">
+                            Para estructuras que requieren una barrera protectora monolítica e impermeable de alta densidad. Indicado para obra nueva o reformas profundas de fachadas en zonas con alta exposición a vientos húmedos y lluvias.
+                        </p>
+                        <div class="flex items-center justify-between pt-2">
+                            <span class="text-sm font-bold text-nordGold font-outfit uppercase tracking-wider">Impermeabilización extrema</span>
+                            <button 
+                                @click="isModalOpen = true; leadService = 'Fachadas (SATE / Proyectado)'"
+                                class="text-[#1A4580] font-bold hover:text-[#235294] transition-colors duration-200 text-base"
+                            >
+                                Saber más →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Service Card 5: Calorifugado Industrial B2B (Featured Full-Width) -->
+                <article class="md:col-span-2 group bg-nordDark text-white rounded-3xl overflow-hidden border border-white/10 transition-all duration-300 hover:shadow-2xl hover:border-nordGold/50 relative">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay" style="background-image: url('images/hero_bg.png');"></div>
+                    <!-- Subtle blue-steel lighting radial glow -->
+                    <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-nordGold/20 blur-3xl group-hover:bg-nordGold/30 transition-all duration-500" aria-hidden="true"></div>
+                    
+                    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 md:p-10">
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="inline-flex items-center gap-2 bg-blue-950/40 border border-blue-400/30 text-blue-200 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider font-outfit">
+                                Ingeniería Térmica • B2B
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-extrabold font-outfit text-white tracking-tight flex items-center gap-3">
+                                <span class="bg-blue-950/50 p-2.5 rounded-2xl border border-white/10 inline-flex shadow-lg shadow-black/20" aria-hidden="true">
+                                    <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Inner steam pipe core (steel) -->
+                                        <circle cx="12" cy="12" r="5" fill="#2D3033" stroke="#4E5357" stroke-width="1" />
+                                        <!-- High temp hot fluid center -->
+                                        <circle cx="12" cy="12" r="3" fill="#EA4335" opacity="0.8" />
+                                        <!-- Mineral wool insulation jacket (concentric layer) -->
+                                        <circle cx="12" cy="12" r="8" stroke="#1B365D" stroke-width="3" fill="none" />
+                                        <!-- Radial heat retention lines -->
+                                        <line x1="12" y1="5.5" x2="12" y2="3" stroke="#E2E8F0" stroke-width="0.8" />
+                                        <line x1="12" y1="18.5" x2="12" y2="21" stroke="#E2E8F0" stroke-width="0.8" />
+                                        <line x1="5.5" y1="12" x2="3" y2="12" stroke="#E2E8F0" stroke-width="0.8" />
+                                        <line x1="18.5" y1="12" x2="21" y2="12" stroke="#E2E8F0" stroke-width="0.8" />
+                                        <!-- Outer polished aluminum/stainless cladding outer ring -->
+                                        <circle cx="12" cy="12" r="10" stroke="#9AA0A6" stroke-width="1.2" fill="none" />
+                                        <circle cx="12" cy="12" r="11" stroke="#E2E8F0" stroke-width="0.6" fill="none" />
+                                        <!-- Metallic rivets on the cladding -->
+                                        <circle cx="5" cy="5" r="0.7" fill="#FFFFFF" />
+                                        <circle cx="19" cy="5" r="0.7" fill="#FFFFFF" />
+                                        <circle cx="5" cy="19" r="0.7" fill="#FFFFFF" />
+                                        <circle cx="19" cy="19" r="0.7" fill="#FFFFFF" />
+                                    </svg>
+                                </span>
+                                Calorifugado Industrial B2B
+                            </h3>
+                            <p class="text-lg text-gray-300 font-medium leading-relaxed">
+                                Soluciones técnicas de aislamiento de alta temperatura para tuberías de vapor, fluidos térmicos, calderas, depósitos, silos y conductos en refinerías y plantas industriales en Galicia.
+                            </p>
+                            
+                            <!-- Specs Grid -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                                <div class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1" aria-hidden="true">✔</span>
+                                    <span class="text-sm font-semibold text-gray-300">Revestimiento en chapa de Aluminio y Acero Inoxidable</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1" aria-hidden="true">✔</span>
+                                    <span class="text-sm font-semibold text-gray-300">Prevención de Riesgos y Cumplimiento ATEX / Alturas</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1" aria-hidden="true">✔</span>
+                                    <span class="text-sm font-semibold text-gray-300">Aislamiento de lana de roca de alta densidad e hidrófuga</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1" aria-hidden="true">✔</span>
+                                    <span class="text-sm font-semibold text-gray-300">Diseño prefabricado en taller de codos y derivaciones</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Interactive SVG Coating Simulator Column (B2B Industrial Calorifugado Showcase) -->
+                        <div 
+                            x-data="{ step: 0 }" 
+                            class="lg:col-span-5 flex flex-col items-center justify-between p-6 bg-[#151719] rounded-3xl border border-gray-800 shadow-xl relative overflow-hidden h-full"
+                        >
+                            <div class="absolute inset-0 bg-gradient-to-b from-[#1E293B]/20 to-transparent pointer-events-none"></div>
+                            
+                            <div class="relative z-10 w-full text-center space-y-2 mb-6">
+                                <span class="text-sm font-bold text-[#63B3ED] uppercase tracking-widest font-sans">Simulador Interactivo B2B</span>
+                                <h4 class="text-xl md:text-2xl font-extrabold text-white font-outfit uppercase tracking-wider">Instalación del Revestimiento</h4>
+                            </div>
+                            
+                            <!-- SVG VIEWPORT -->
+                            <div class="w-full relative bg-black/40 p-2 rounded-2xl border border-gray-800">
+                                <svg viewBox="0 0 500 240" class="w-full" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <!-- Steel pipe gradient -->
+                                        <linearGradient id="simSteelGradIndex" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#334155" />
+                                            <stop offset="25%" stop-color="#64748B" />
+                                            <stop offset="50%" stop-color="#94A3B8" />
+                                            <stop offset="75%" stop-color="#475569" />
+                                            <stop offset="100%" stop-color="#0F172A" />
+                                        </linearGradient>
+                                        <!-- Insulation coquilla gradient -->
+                                        <linearGradient id="simWoolGradIndex" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#B45309" />
+                                            <stop offset="20%" stop-color="#D97706" />
+                                            <stop offset="50%" stop-color="#FBBF24" />
+                                            <stop offset="80%" stop-color="#F59E0B" />
+                                            <stop offset="100%" stop-color="#78350F" />
+                                        </linearGradient>
+                                        <!-- Metallic aluminum cladding gradient -->
+                                        <linearGradient id="simCladGradIndex" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="0%" stop-color="#475569" />
+                                            <stop offset="20%" stop-color="#94A3B8" />
+                                            <stop offset="40%" stop-color="#CBD5E1" />
+                                            <stop offset="50%" stop-color="#F8FAFC" />
+                                            <stop offset="65%" stop-color="#CBD5E1" />
+                                            <stop offset="85%" stop-color="#64748B" />
+                                            <stop offset="100%" stop-color="#334155" />
+                                        </linearGradient>
+                                        
+                                        <!-- Heat wave glow filter -->
+                                        <filter id="heatGlowIndex" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feGaussianBlur stdDeviation="3" result="blur" />
+                                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                        </filter>
+
+                                        <!-- Masks for progressive display -->
+                                        <mask id="insulationMaskIndex">
+                                            <rect x="0" y="0" width="500" height="240" fill="black" />
+                                            <rect x="20" y="65" height="80" :width="step >= 1 ? '460' : '0'" class="transition-all duration-1000 ease-out" fill="white" />
+                                        </mask>
+                                        <mask id="claddingMaskIndex">
+                                            <rect x="0" y="0" width="500" height="240" fill="black" />
+                                            <rect x="20" y="61" height="88" :width="step >= 2 ? '460' : '0'" class="transition-all duration-1000 ease-out" fill="white" />
+                                        </mask>
+                                    </defs>
+
+                                    <!-- Background Grid Lines -->
+                                    <g stroke="#334155" stroke-width="0.3" opacity="0.4">
+                                        <line x1="50" y1="0" x2="50" y2="240" stroke-dasharray="2 4" />
+                                        <line x1="100" y1="0" x2="100" y2="240" stroke-dasharray="2 4" />
+                                        <line x1="150" y1="0" x2="150" y2="240" stroke-dasharray="2 4" />
+                                        <line x1="200" y1="0" x2="200" y2="240" stroke-dasharray="2 4" />
+                                        <line x1="250" y1="0" x2="250" y2="240" stroke-dasharray="2 4" />
+                                        <line x1="300" y1="0" x2="300" y2="240" stroke-dasharray="2 4" />
+                                        <line x1="350" y1="0" x2="350" y2="240" stroke-dasharray="2 4" />
+                                        <line x1="400" y1="0" x2="400" y2="240" stroke-dasharray="2 4" />
+                                        <line x1="450" y1="0" x2="450" y2="240" stroke-dasharray="2 4" />
+                                        
+                                        <line x1="0" y1="50" x2="500" y2="50" stroke-dasharray="2 4" />
+                                        <line x1="0" y1="105" x2="500" y2="105" stroke-dasharray="2 4" />
+                                        <line x1="0" y1="160" x2="500" y2="160" stroke-dasharray="2 4" />
+                                        <line x1="0" y1="210" x2="500" y2="210" stroke-dasharray="2 4" />
+                                    </g>
+
+                                    <!-- THERMAL LEAK WAVES -->
+                                    <g :class="step === 0 ? 'opacity-100' : (step === 1 ? 'opacity-30' : 'opacity-0')" class="transition-opacity duration-1000 ease-in-out">
+                                        <path d="M40,50 Q60,35 80,50 T120,50 T160,50 T200,50 T240,50 T280,50 T320,50 T360,50 T400,50 T440,50" fill="none" stroke="#EF4444" stroke-width="1.5" filter="url(#heatGlowIndex)" opacity="0.8">
+                                            <animate attributeName="d" dur="3s" repeatCount="indefinite" values="M40,50 Q60,35 80,50 T120,50 T160,50 T200,50 T240,50 T280,50 T320,50 T360,50 T400,50 T440,50; M40,50 Q60,65 80,50 T120,50 T160,50 T200,50 T240,50 T280,50 T320,50 T360,50 T400,50 T440,50; M40,50 Q60,35 80,50 T120,50 T160,50 T200,50 T240,50 T280,50 T320,50 T360,50 T400,50 T440,50" />
+                                        </path>
+                                        <path d="M40,160 Q60,175 80,160 T120,160 T160,160 T200,160 T240,160 T280,160 T320,160 T360,160 T400,160 T440,160" fill="none" stroke="#EF4444" stroke-width="1.5" filter="url(#heatGlowIndex)" opacity="0.8">
+                                            <animate attributeName="d" dur="3.5s" repeatCount="indefinite" values="M40,160 Q60,175 80,160 T120,160 T160,160 T200,160 T240,160 T280,160 T320,160 T360,160 T400,160 T440,160; M40,160 Q60,145 80,160 T120,160 T160,160 T200,160 T240,160 T280,160 T320,160 T360,160 T400,160 T440,160; M40,160 Q60,175 80,160 T120,160 T160,160 T200,160 T240,160 T280,160 T320,160 T360,160 T400,160 T440,160" />
+                                        </path>
+                                    </g>
+
+                                    <!-- LAYER 1: BASE STEEL PIPE -->
+                                    <rect x="20" y="80" width="10" height="50" fill="url(#simSteelGradIndex)" stroke="#1E293B" stroke-width="0.8" rx="2" />
+                                    <rect x="30" y="85" width="440" height="40" fill="url(#simSteelGradIndex)" stroke="#1E293B" stroke-width="0.8" />
+                                    <rect x="470" y="80" width="10" height="50" fill="url(#simSteelGradIndex)" stroke="#1E293B" stroke-width="0.8" rx="2" />
+                                    <line x1="150" y1="85" x2="150" y2="125" stroke="#1E293B" stroke-width="0.8" stroke-dasharray="1 1" />
+                                    <line x1="330" y1="85" x2="330" y2="125" stroke="#1E293B" stroke-width="0.8" stroke-dasharray="1 1" />
+
+                                    <!-- LAYER 2: MINERAL WOOL INSULATION -->
+                                    <g mask="url(#insulationMaskIndex)">
+                                        <rect x="30" y="70" width="440" height="70" fill="url(#simWoolGradIndex)" stroke="#B45309" stroke-width="0.8" />
+                                        <line x1="150" y1="70" x2="150" y2="140" stroke="#78350F" stroke-width="1.2" />
+                                        <line x1="270" y1="70" x2="270" y2="140" stroke="#78350F" stroke-width="1.2" />
+                                        <line x1="390" y1="70" x2="390" y2="140" stroke="#78350F" stroke-width="1.2" />
+                                        <path d="M60,80 Q70,95 80,80 M100,110 Q110,125 120,110 M180,90 Q190,105 200,90 M310,115 Q320,130 330,115 M410,85 Q420,100 430,85" fill="none" stroke="#FBBF24" stroke-width="0.8" opacity="0.4" />
+                                    </g>
+
+                                    <!-- LAYER 3: ALUMIMUM CLADDING JACKETING -->
+                                    <g mask="url(#claddingMaskIndex)">
+                                        <rect x="30" y="66" width="440" height="78" fill="url(#simCladGradIndex)" stroke="#334155" stroke-width="0.8" />
+                                        <line x1="30" y1="75" x2="470" y2="75" stroke="#64748B" stroke-width="0.6" />
+                                        <line x1="30" y1="135" x2="470" y2="135" stroke="#334155" stroke-width="0.6" />
+                                        <rect x="100" y="65" width="12" height="80" fill="url(#simSteelGradIndex)" stroke="#1E293B" stroke-width="0.6" />
+                                        <rect x="220" y="65" width="12" height="80" fill="url(#simSteelGradIndex)" stroke="#1E293B" stroke-width="0.6" />
+                                        <rect x="340" y="65" width="12" height="80" fill="url(#simSteelGradIndex)" stroke="#1E293B" stroke-width="0.6" />
+                                        <rect x="440" y="65" width="12" height="80" fill="url(#simSteelGradIndex)" stroke="#1E293B" stroke-width="0.6" />
+                                        <circle cx="106" cy="72" r="1.2" fill="#E2E8F0" stroke="#0F172A" stroke-width="0.3" />
+                                        <circle cx="106" cy="138" r="1.2" fill="#E2E8F0" stroke="#0F172A" stroke-width="0.3" />
+                                        <circle cx="226" cy="72" r="1.2" fill="#E2E8F0" stroke="#0F172A" stroke-width="0.3" />
+                                        <circle cx="226" cy="138" r="1.2" fill="#E2E8F0" stroke="#0F172A" stroke-width="0.3" />
+                                        <circle cx="346" cy="72" r="1.2" fill="#E2E8F0" stroke="#0F172A" stroke-width="0.3" />
+                                        <circle cx="346" cy="138" r="1.2" fill="#E2E8F0" stroke="#0F172A" stroke-width="0.3" />
+                                        <circle cx="446" cy="72" r="1.2" fill="#E2E8F0" stroke="#0F172A" stroke-width="0.3" />
+                                        <circle cx="446" cy="138" r="1.2" fill="#E2E8F0" stroke="#0F172A" stroke-width="0.3" />
+                                    </g>
+
+                                    <!-- TEXT LABELS & VALUES -->
+                                    <g class="transition-opacity duration-300">
+                                        <line x1="80" y1="105" x2="80" y2="180" stroke="#94A3B8" stroke-width="0.8" stroke-dasharray="2 2" />
+                                        <circle cx="80" cy="105" r="2" fill="#94A3B8" />
+                                        <text x="80" y="195" font-family="'Outfit', sans-serif" font-size="14" font-weight="bold" fill="#94A3B8" text-anchor="middle">1. Tubo de Acero</text>
+                                        <text x="80" y="210" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#64748B" text-anchor="middle">Conducción base</text>
+                                    </g>
+
+                                    <g :class="step >= 1 ? 'opacity-100' : 'opacity-20'" class="transition-opacity duration-500 ease-in-out">
+                                        <line x1="250" y1="105" x2="250" y2="180" stroke="#FBBF24" stroke-width="0.8" stroke-dasharray="2 2" />
+                                        <circle cx="250" cy="105" r="2" fill="#FBBF24" />
+                                        <text x="250" y="195" font-family="'Outfit', sans-serif" font-size="14" font-weight="bold" fill="#F59E0B" text-anchor="middle">2. Lana de Roca</text>
+                                        <text x="250" y="210" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#B45309" text-anchor="middle">Barrera térmica</text>
+                                    </g>
+
+                                    <g :class="step >= 2 ? 'opacity-100' : 'opacity-20'" class="transition-opacity duration-500 ease-in-out">
+                                        <line x1="410" y1="105" x2="410" y2="180" stroke="#CBD5E1" stroke-width="0.8" stroke-dasharray="2 2" />
+                                        <circle cx="410" cy="105" r="2" fill="#CBD5E1" />
+                                        <text x="410" y="195" font-family="'Outfit', sans-serif" font-size="14" font-weight="bold" fill="#E2E8F0" text-anchor="middle">3. Chapa Inox/Alu</text>
+                                        <text x="410" y="210" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">Blindaje exterior</text>
+                                    </g>
+
+                                    <!-- Live status banner -->
+                                    <g x-show="step === 0">
+                                        <rect x="90" y="10" width="320" height="28" fill="#EF4444" rx="14" opacity="0.9" />
+                                        <text x="250" y="28" font-family="'Outfit', sans-serif" font-size="12" font-weight="extrabold" fill="#FFFFFF" text-anchor="middle">Tª SUPERFICIAL: ~180°C (PÉRDIDA MÁXIMA)</text>
+                                    </g>
+                                    <g x-show="step === 1" style="display: none;">
+                                        <rect x="90" y="10" width="320" height="28" fill="#F59E0B" rx="14" opacity="0.9" />
+                                        <text x="250" y="28" font-family="'Outfit', sans-serif" font-size="12" font-weight="extrabold" fill="#FFFFFF" text-anchor="middle">Tª SUPERFICIAL: ~45°C (AISLADO)</text>
+                                    </g>
+                                    <g x-show="step === 2" style="display: none;">
+                                        <rect x="90" y="10" width="320" height="28" fill="#10B981" rx="14" opacity="0.9" />
+                                        <text x="250" y="28" font-family="'Outfit', sans-serif" font-size="12" font-weight="extrabold" fill="#FFFFFF" text-anchor="middle">Tª SUPERFICIAL: ~25°C (CALORIFUGADO SEGURO)</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- CONTROL BUTTONS -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full mt-4">
+                                <button 
+                                    @click="step = 0" 
+                                    class="py-3 px-2 text-base font-bold font-sans rounded-xl border transition-all duration-200"
+                                    :class="step === 0 ? 'bg-[#EF4444] text-white border-[#EF4444]' : 'bg-transparent text-gray-400 border-gray-800 hover:text-white hover:border-gray-700'"
+                                >
+                                    1. Acero Desnudo
+                                </button>
+                                <button 
+                                    @click="step = 1" 
+                                    class="py-3 px-2 text-base font-bold font-sans rounded-xl border transition-all duration-200"
+                                    :class="step === 1 ? 'bg-[#F59E0B] text-white border-[#F59E0B]' : 'bg-transparent text-gray-400 border-gray-800 hover:text-white hover:border-gray-700'"
+                                >
+                                    2. Lana Aislante
+                                </button>
+                                <button 
+                                    @click="step = 2" 
+                                    class="py-3 px-2 text-base font-bold font-sans rounded-xl border transition-all duration-200"
+                                    :class="step === 2 ? 'bg-[#10B981] text-white border-[#10B981]' : 'bg-transparent text-gray-400 border-gray-800 hover:text-white hover:border-gray-700'"
+                                >
+                                    3. Cladding Inox
+                                </button>
+                            </div>
+
+                            <div class="mt-8 w-full flex flex-col md:flex-row items-center gap-4 justify-between">
+                                <p class="text-sm md:text-base text-gray-400 font-medium leading-relaxed max-w-sm text-center md:text-left">
+                                    Simulación interactiva B2B del impacto del aislamiento.
+                                </p>
+                                <button 
+                                    @click="isModalOpen = true; leadService = 'Solución Técnica Integral'"
+                                    class="w-full md:w-auto btn-pipe-coated text-white font-outfit font-extrabold text-sm px-6 py-3 rounded-full tracking-wider uppercase shadow-xl transition-all duration-300"
+                                >
+                                    ⚙️ Consulta Técnica B2B
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- B2B CTA BANNER SECTION -->
+            <div class="mt-12 bg-gradient-to-r from-nordDark to-[#1B365D] rounded-3xl p-8 md:p-10 border border-white/10 shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-6">
+                <!-- Technical schematic blueprint grid overlay -->
+                <div class="absolute inset-0 z-0 opacity-15" style="background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px), linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px; background-position: center;"></div>
+                <!-- Subtle industrial background glow -->
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/40 via-transparent to-transparent z-0" aria-hidden="true"></div>
+                <div class="relative z-10 space-y-3 max-w-3xl">
+                    <span class="bg-blue-500/20 border border-blue-500/30 text-blue-200 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider font-outfit inline-block">Proyectos Industriales Galicia</span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold font-outfit text-white leading-tight">
+                        ¿Necesitas un estudio térmico para tu planta industrial?
+                    </h3>
+                    <p class="text-base text-gray-300 font-medium leading-relaxed">
+                        Estudiamos los planos de tu instalación o realizamos una auditoría de campo para valorar las pérdidas energéticas y planificar el calorifugado de tuberías, depósitos o calderas.
+                    </p>
+                </div>
+                <div class="relative z-10 flex-shrink-0 w-full lg:w-auto">
+                    <button 
+                        @click="isModalOpen = true; leadService = 'Solución Técnica Integral'"
+                        class="w-full lg:w-auto bg-white hover:bg-gray-100 text-nordDark font-outfit font-extrabold text-lg px-8 py-4 rounded-full tracking-wider uppercase shadow-lg transition-all duration-300 hover:scale-[1.03]"
+                    >
+                        📥 Solicitar Estudio B2B
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METALLIC PIPE DIVIDER 2 -->
+    <div class="w-full overflow-hidden bg-transparent leading-[0] select-none -mb-1 relative z-20" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-14">
+            <defs>
+                <linearGradient id="pipeMetal2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#151719" />
+                    <stop offset="12%" stop-color="#3A3F44" />
+                    <stop offset="30%" stop-color="#7F878D" />
+                    <stop offset="48%" stop-color="#E2E8F0" />
+                    <stop offset="52%" stop-color="#FFFFFF" />
+                    <stop offset="58%" stop-color="#E2E8F0" />
+                    <stop offset="78%" stop-color="#7F878D" />
+                    <stop offset="92%" stop-color="#3A3F44" />
+                    <stop offset="100%" stop-color="#151719" />
+                </linearGradient>
+                <linearGradient id="pipeStrap2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#2D3033" />
+                    <stop offset="25%" stop-color="#9AA0A6" />
+                    <stop offset="50%" stop-color="#FFFFFF" />
+                    <stop offset="75%" stop-color="#9AA0A6" />
+                    <stop offset="100%" stop-color="#2D3033" />
+                </linearGradient>
+                <linearGradient id="brassBezel" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#D4AF37" />
+                    <stop offset="30%" stop-color="#FFF3A8" />
+                    <stop offset="70%" stop-color="#AA7C11" />
+                    <stop offset="100%" stop-color="#5B4005" />
+                </linearGradient>
+                <linearGradient id="steelBezel" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#9AA0A6" />
+                    <stop offset="40%" stop-color="#FFFFFF" />
+                    <stop offset="70%" stop-color="#4E5357" />
+                    <stop offset="100%" stop-color="#1F2124" />
+                </linearGradient>
+                <filter id="pipeShadow2" x="-5%" y="-10%" width="110%" height="140%">
+                    <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.35"/>
+                </filter>
+            </defs>
+            
+            <!-- Main Horizontal Insulated Pipe (centered y=18 to y=42) -->
+            <rect y="18" width="1440" height="24" fill="url(#pipeMetal2)" filter="url(#pipeShadow2)" />
+
+            <!-- Seam lines -->
+            <line x1="0" y1="22" x2="1440" y2="22" stroke="#4E5357" stroke-width="0.5" stroke-dasharray="10 40" opacity="0.7" />
+            <line x1="0" y1="38" x2="1440" y2="38" stroke="#4E5357" stroke-width="0.5" stroke-dasharray="15 50" opacity="0.7" />
+
+            <!-- Joint Straps -->
+            <g filter="url(#pipeShadow2)">
+                <rect x="350" y="16" width="16" height="28" rx="1.5" fill="url(#pipeStrap2)" />
+                <circle cx="358" cy="20" r="1.5" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.3" />
+                <circle cx="358" cy="40" r="1.5" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.3" />
+            </g>
+            <g filter="url(#pipeShadow2)">
+                <rect x="1090" y="16" width="16" height="28" rx="1.5" fill="url(#pipeStrap2)" />
+                <circle cx="1098" cy="20" r="1.5" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.3" />
+                <circle cx="1098" cy="40" r="1.5" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.3" />
+            </g>
+
+            <!-- Center Industrial Pressure Gauge (Manómetro) -->
+            <!-- Gauge Connection Stem / Brass Fitting -->
+            <rect x="716" y="10" width="8" height="12" fill="url(#brassBezel)" stroke="#5B4005" stroke-width="0.5" />
+            <rect x="714" y="12" width="12" height="3" fill="url(#brassBezel)" />
+            
+            <!-- Gauge Main Case -->
+            <g filter="url(#pipeShadow2)">
+                <!-- Steel outer ring bezel -->
+                <circle cx="720" cy="18" r="17" fill="url(#steelBezel)" stroke="#2D3033" stroke-width="0.8" />
+                <!-- Inner white face -->
+                <circle cx="720" cy="18" r="14" fill="#FFFFFF" stroke="#9AA0A6" stroke-width="0.5" />
+                
+                <!-- Green efficiency arc (Normal pressure) -->
+                <path d="M710 18 A 10 10 0 0 1 727 11" fill="none" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" opacity="0.85" />
+                <!-- Red warning arc (High pressure/temp) -->
+                <path d="M727 11 A 10 10 0 0 1 730 18" fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" opacity="0.85" />
+                
+                <!-- Tick marks -->
+                <line x1="711" y1="18" x2="713" y2="18" stroke="#1F2124" stroke-width="0.5" />
+                <line x1="720" y1="9" x2="720" y2="11" stroke="#1F2124" stroke-width="0.5" />
+                <line x1="729" y1="18" x2="727" y2="18" stroke="#1F2124" stroke-width="0.5" />
+                <line x1="713.6" y1="11.6" x2="715" y2="13" stroke="#1F2124" stroke-width="0.5" />
+                <line x1="726.4" y1="11.6" x2="725" y2="13" stroke="#1F2124" stroke-width="0.5" />
+
+                <!-- Gauge red indicator needle -->
+                <line x1="720" y1="18" x2="725.5" y2="10.5" stroke="#EF4444" stroke-width="1.2" stroke-linecap="round" />
+                <!-- Needle center cap -->
+                <circle cx="720" cy="18" r="2.2" fill="#1F2124" stroke="#FFFFFF" stroke-width="0.5" />
+            </g>
+        </svg>
+    </div>
+
+    <!-- METODOLOGÍA SECTION -->
+    <section 
+        id="metodo"
+        class="py-10 md:py-14 bg-white relative z-10"
+        role="region" 
+        aria-label="Nuestro proceso de trabajo"
+    >
+        <div class="max-w-7xl mx-auto px-[5%] space-y-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-nordDark tracking-tight">
+                    Nuestro Método de Trabajo en Galicia
+                </h2>
+                <div class="w-20 h-1 bg-nordGold mx-auto rounded-full"></div>
+                <p class="text-lg text-gray-600 font-medium">
+                    Trabajamos bajo estrictos protocolos de limpieza y eficiencia para alterar lo mínimo tu día a día.
+                </p>
+            </div>
+
+            <!-- Methodology Steps Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <!-- Connector lines for desktop -->
+                <div class="hidden md:block absolute top-[25%] left-[20%] right-[20%] h-0.5 bg-nordGold/30 -z-10"></div>
+
+                <!-- Step 1 -->
+                <div class="bg-nordGray/60 p-6 md:p-8 rounded-3xl border border-gray-100 text-center space-y-4 relative z-10">
+                    <div class="w-14 h-14 rounded-full bg-gradient-to-b from-[#235294] to-[#1A4580] text-white font-outfit font-extrabold text-2xl flex items-center justify-center mx-auto shadow-md">
+                        01
+                    </div>
+                    <h3 class="text-xl font-bold text-nordDark">Diagnóstico Gratuito</h3>
+                    <p class="text-base text-gray-600 font-medium">
+                        Realizamos una inspección exhaustiva de las cámaras de aire para valorar la viabilidad del proyecto.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-nordGray/60 p-6 md:p-8 rounded-3xl border border-gray-100 text-center space-y-4 relative z-10">
+                    <div class="w-14 h-14 rounded-full bg-gradient-to-b from-[#235294] to-[#1A4580] text-white font-outfit font-extrabold text-2xl flex items-center justify-center mx-auto shadow-md">
+                        02
+                    </div>
+                    <h3 class="text-xl font-bold text-nordDark">Solución a Medida</h3>
+                    <p class="text-base text-gray-600 font-medium">
+                        Elegimos el material idóneo (lana de roca o celulosa ecológica) y planificamos la fecha idónea de ejecución.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-nordGray/60 p-6 md:p-8 rounded-3xl border border-gray-100 text-center space-y-4 relative z-10">
+                    <div class="w-14 h-14 rounded-full bg-gradient-to-b from-[#235294] to-[#1A4580] text-white font-outfit font-extrabold text-2xl flex items-center justify-center mx-auto shadow-md">
+                        03
+                    </div>
+                    <h3 class="text-xl font-bold text-nordDark">Ejecución Rápida</h3>
+                    <p class="text-base text-gray-600 font-medium">
+                        Insuflamos y sellamos cada entrada de manera milimétrica en solo un día, dejando tu hogar limpio y cómodo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS (GOOGLE REVIEWS) SECTION -->
+    <section 
+        id="opiniones"
+        class="py-10 md:py-14 bg-white text-nordDark relative z-10"
+        role="region" 
+        aria-label="Opiniones de clientes"
+    >
+        <div class="max-w-7xl mx-auto px-[5%] space-y-6">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-sm font-bold text-gray-500 font-sans uppercase tracking-wider">Valoraciones Reales</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-nordDark tracking-tight">
+                    Opiniones Verificadas en Google
+                </h2>
+                <div class="w-20 h-1 bg-[#F4B400] mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Google Rating Summary Widget (No Button) -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 bg-white p-6 rounded-xl border border-gray-200 max-w-2xl mx-auto shadow-sm">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center border border-gray-200">
+                        <svg class="w-7 h-7" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" />
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-gray-900 font-sans">Nord Project</h3>
+                        <p class="text-xs text-gray-500 font-medium">Google Reviews • Coruña</p>
+                    </div>
+                </div>
+                <div class="h-8 w-px bg-gray-200 hidden sm:block"></div>
+                <div class="flex items-center gap-4">
+                    <span class="text-4xl font-extrabold text-gray-900 font-sans">4.9</span>
+                    <div class="flex flex-col">
+                        <div class="flex items-center text-[#F4B400] gap-0.5">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        </div>
+                        <span class="text-[11px] text-gray-500 font-semibold mt-1">87 reseñas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Component (Swiper.js) -->
+            <div class="swiper mySwiper relative max-w-6xl mx-auto px-4 md:px-12 py-4">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide px-3 h-auto">
+                        <div class="bg-white border border-gray-200 p-6 rounded-2xl flex flex-col justify-between min-h-[250px] shadow-sm hover:border-gray-300 transition-all duration-200 h-full">
+                            <div class="space-y-3">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full text-white flex items-center justify-center font-bold text-sm font-sans" style="background-color: #E64A19">M</div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-gray-900 font-sans">María R.</h4>
+                                            <p class="text-[10px] text-gray-500 font-medium">Local Guide • 8 opiniones</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" />
+                                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" />
+                                    </svg>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <div class="flex items-center text-[#F4B400] gap-0.5">
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                    </div>
+                                    <span class="text-[10px] text-gray-400 font-semibold font-sans">Hace 2 semanas</span>
+                                </div>
+                                <p class="text-[12.5px] text-gray-600 font-medium font-sans leading-relaxed">"El trabajo de aislamiento insuflado en mi chalet fue espectacular. Lo completaron en un solo día, dejaron toda la casa limpia y notamos el ahorro energético de inmediato."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide px-3 h-auto">
+                        <div class="bg-white border border-gray-200 p-6 rounded-2xl flex flex-col justify-between min-h-[250px] shadow-sm hover:border-gray-300 transition-all duration-200 h-full">
+                            <div class="space-y-3">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full text-white flex items-center justify-center font-bold text-sm font-sans" style="background-color: #00796B">C</div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-gray-900 font-sans">Carlos V.</h4>
+                                            <p class="text-[10px] text-gray-500 font-medium">Local Guide • 15 opiniones</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" /></svg>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <div class="flex items-center text-[#F4B400] gap-0.5">
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                    </div>
+                                    <span class="text-[10px] text-gray-400 font-semibold font-sans">Hace 1 mes</span>
+                                </div>
+                                <p class="text-[12.5px] text-gray-600 font-medium font-sans leading-relaxed">"Contratamos el calorifugado de las líneas de vapor de nuestra nave de producción. Muy profesionales, cumplieron con todas las exigencias de seguridad y el acabado es excelente."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide px-3 h-auto">
+                        <div class="bg-white border border-gray-200 p-6 rounded-2xl flex flex-col justify-between min-h-[250px] shadow-sm hover:border-gray-300 transition-all duration-200 h-full">
+                            <div class="space-y-3">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full text-white flex items-center justify-center font-bold text-sm font-sans" style="background-color: #D81B60">M</div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-gray-900 font-sans">Manuel P.</h4>
+                                            <p class="text-[10px] text-gray-500 font-medium">Local Guide • 4 opiniones</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" /></svg>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <div class="flex items-center text-[#F4B400] gap-0.5">
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                    </div>
+                                    <span class="text-[10px] text-gray-400 font-semibold font-sans">Hace 2 meses</span>
+                                </div>
+                                <p class="text-[12.5px] text-gray-600 font-medium font-sans leading-relaxed">"Buscábamos quitar las humedades por condensación en la Zapateira. Realizaron el aislamiento térmico insuflado y el cambio ha sido radical: adiós al moho y al frío."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide px-3 h-auto">
+                        <div class="bg-white border border-gray-200 p-6 rounded-2xl flex flex-col justify-between min-h-[250px] shadow-sm hover:border-gray-300 transition-all duration-200 h-full">
+                            <div class="space-y-3">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full text-white flex items-center justify-center font-bold text-sm font-sans" style="background-color: #FF8F00">E</div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-gray-900 font-sans">Elena S.</h4>
+                                            <p class="text-[10px] text-gray-500 font-medium">Local Guide • 11 opiniones</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" /></svg>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <div class="flex items-center text-[#F4B400] gap-0.5">
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                    </div>
+                                    <span class="text-[10px] text-gray-400 font-semibold font-sans">Hace 3 meses</span>
+                                </div>
+                                <p class="text-[12.5px] text-gray-600 font-medium font-sans leading-relaxed">"Excelentes profesionales. Israel nos explicó todo, Víctor coordinó la obra de forma impecable y el equipo de instaladores trabajó de manera limpia. Totalmente recomendados."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide px-3 h-auto">
+                        <div class="bg-white border border-gray-200 p-6 rounded-2xl flex flex-col justify-between min-h-[250px] shadow-sm hover:border-gray-300 transition-all duration-200 h-full">
+                            <div class="space-y-3">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full text-white flex items-center justify-center font-bold text-sm font-sans" style="background-color: #1976D2">J</div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-gray-900 font-sans">Javier G.</h4>
+                                            <p class="text-[10px] text-gray-500 font-medium">Local Guide • 6 opiniones</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" /></svg>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <div class="flex items-center text-[#F4B400] gap-0.5">
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                    </div>
+                                    <span class="text-[10px] text-gray-400 font-semibold font-sans">Hace 1 mes</span>
+                                </div>
+                                <p class="text-[12.5px] text-gray-600 font-medium font-sans leading-relaxed">"Muy serios y puntuales. Aislaron acústicamente el tabique medianero con el vecino y la reducción de ruido es notable. Una inversión que merece totalmente la pena."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 6 -->
+                    <div class="swiper-slide px-3 h-auto">
+                        <div class="bg-white border border-gray-200 p-6 rounded-2xl flex flex-col justify-between min-h-[250px] shadow-sm hover:border-gray-300 transition-all duration-200 h-full">
+                            <div class="space-y-3">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full text-white flex items-center justify-center font-bold text-sm font-sans" style="background-color: #388E3C">A</div>
+                                        <div>
+                                            <h4 class="text-sm font-bold text-gray-900 font-sans">Ana M.</h4>
+                                            <p class="text-[10px] text-gray-500 font-medium">Local Guide • 9 opiniones</p>
+                                        </div>
+                                    </div>
+                                    <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" /></svg>
+                                </div>
+                                <div class="flex items-center gap-1.5">
+                                    <div class="flex items-center text-[#F4B400] gap-0.5">
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                    </div>
+                                    <span class="text-[10px] text-gray-400 font-semibold font-sans">Hace 3 semanas</span>
+                                </div>
+                                <p class="text-[12.5px] text-gray-600 font-medium font-sans leading-relaxed">"El trato comercial y técnico fue de diez. Nos informaron de las ayudas disponibles de la Xunta de Galicia para mejorar la eficiencia y gestionaron la documentación. Muy eficientes."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination & Nav -->
+                <div class="swiper-pagination !-bottom-8"></div>
+                <div class="swiper-button-prev !text-gray-600 !bg-white !w-10 !h-10 !rounded-full shadow-md after:!text-sm hover:!bg-gray-50 border border-gray-200 hidden md:flex"></div>
+                <div class="swiper-button-next !text-gray-600 !bg-white !w-10 !h-10 !rounded-full shadow-md after:!text-sm hover:!bg-gray-50 border border-gray-200 hidden md:flex"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section 
+        id="equipo"
+        class="py-10 md:py-14 bg-nordDark text-white relative overflow-hidden"
+        role="region" 
+        aria-label="Nuestro equipo de profesionales"
+    >
+        <!-- Subtle background styling (titanium-graphite to midnight steel-blue transition) -->
+        <div class="absolute inset-0 bg-gradient-to-b from-nordDark/95 to-[#1B365D]/20 z-0" aria-hidden="true"></div>
+
+        <div class="max-w-7xl mx-auto px-[5%] space-y-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-sm font-bold text-[#63B3ED] font-outfit uppercase tracking-wider">Nuestro Equipo</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
+                    Profesionales a tu Servicio
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-blue-300 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Team Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Member 1 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col items-center text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] hover:border-blue-400/40">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-2 border-blue-500/40 mb-4 shadow-md">
+                        <img src="images/team-img2-1.webp" alt="Israel Moreno" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white font-outfit">Israel Moreno</h3>
+                    <p class="text-nordGold-light font-semibold text-xs uppercase tracking-wider mt-1 font-sans">Asesor Comercial</p>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col items-center text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] hover:border-blue-400/40">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-2 border-blue-500/40 mb-4 shadow-md">
+                        <img src="images/team-img2-2.webp" alt="Víctor" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white font-outfit">Víctor</h3>
+                    <p class="text-nordGold-light font-semibold text-xs uppercase tracking-wider mt-1 font-sans">Responsable de Obras</p>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col items-center text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] hover:border-blue-400/40">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-2 border-blue-500/40 mb-4 shadow-md">
+                        <img src="images/team-img2-3.webp" alt="Rosa" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white font-outfit">Rosa</h3>
+                    <p class="text-nordGold-light font-semibold text-xs uppercase tracking-wider mt-1 font-sans">Administración y Calidad</p>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col items-center text-center shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] hover:border-blue-400/40">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden border-2 border-blue-500/40 mb-4 shadow-md">
+                        <img src="images/team-img2-4.webp" alt="Técnicos de Instalación" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white font-outfit">Técnicos de Instalación</h3>
+                    <p class="text-nordGold-light font-semibold text-xs uppercase tracking-wider mt-1 font-sans">Operarios Homologados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METALLIC PIPE DIVIDER 3 -->
+    <div class="w-full overflow-hidden bg-transparent leading-[0] select-none -mb-1 relative z-20" aria-hidden="true">
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-10">
+            <defs>
+                <linearGradient id="pipeMetal3" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#151719" />
+                    <stop offset="12%" stop-color="#3A3F44" />
+                    <stop offset="30%" stop-color="#7F878D" />
+                    <stop offset="48%" stop-color="#E2E8F0" />
+                    <stop offset="52%" stop-color="#FFFFFF" />
+                    <stop offset="58%" stop-color="#E2E8F0" />
+                    <stop offset="78%" stop-color="#7F878D" />
+                    <stop offset="92%" stop-color="#3A3F44" />
+                    <stop offset="100%" stop-color="#151719" />
+                </linearGradient>
+                <linearGradient id="pipeStrap3" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#2D3033" />
+                    <stop offset="25%" stop-color="#9AA0A6" />
+                    <stop offset="50%" stop-color="#FFFFFF" />
+                    <stop offset="75%" stop-color="#9AA0A6" />
+                    <stop offset="100%" stop-color="#2D3033" />
+                </linearGradient>
+                <filter id="pipeShadow3" x="-5%" y="-10%" width="110%" height="140%">
+                    <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.35"/>
+                </filter>
+            </defs>
+            
+            <!-- Main Horizontal Insulated Pipe (centered y=8 to y=32) -->
+            <rect y="8" width="1440" height="24" fill="url(#pipeMetal3)" filter="url(#pipeShadow3)" />
+
+            <!-- Seam lines -->
+            <line x1="0" y1="12" x2="1440" y2="12" stroke="#4E5357" stroke-width="0.5" stroke-dasharray="10 30" opacity="0.7" />
+            <line x1="0" y1="28" x2="1440" y2="28" stroke="#4E5357" stroke-width="0.5" stroke-dasharray="12 40" opacity="0.7" />
+
+            <!-- Flange Joint 1 (x=380) -->
+            <g filter="url(#pipeShadow3)">
+                <!-- Left Flange Face -->
+                <rect x="380" y="4" width="6" height="32" rx="1" fill="url(#pipeStrap3)" />
+                <!-- Right Flange Face -->
+                <rect x="387" y="4" width="6" height="32" rx="1" fill="url(#pipeStrap3)" />
+                <!-- Connecting Bolts -->
+                <rect x="378" y="7" width="17" height="4" rx="0.5" fill="#151719" stroke="#E2E8F0" stroke-width="0.3" />
+                <rect x="378" y="18" width="17" height="4" rx="0.5" fill="#151719" stroke="#E2E8F0" stroke-width="0.3" />
+                <rect x="378" y="29" width="17" height="4" rx="0.5" fill="#151719" stroke="#E2E8F0" stroke-width="0.3" />
+            </g>
+
+            <!-- Flange Joint 2 (x=1020) -->
+            <g filter="url(#pipeShadow3)">
+                <!-- Left Flange Face -->
+                <rect x="1020" y="4" width="6" height="32" rx="1" fill="url(#pipeStrap3)" />
+                <!-- Right Flange Face -->
+                <rect x="1027" y="4" width="6" height="32" rx="1" fill="url(#pipeStrap3)" />
+                <!-- Connecting Bolts -->
+                <rect x="1018" y="7" width="17" height="4" rx="0.5" fill="#151719" stroke="#E2E8F0" stroke-width="0.3" />
+                <rect x="1018" y="18" width="17" height="4" rx="0.5" fill="#151719" stroke="#E2E8F0" stroke-width="0.3" />
+                <rect x="1018" y="29" width="17" height="4" rx="0.5" fill="#151719" stroke="#E2E8F0" stroke-width="0.3" />
+            </g>
+
+            <!-- Additional Cladding Straps -->
+            <rect x="150" y="6" width="12" height="28" rx="1" fill="url(#pipeStrap3)" />
+            <rect x="700" y="6" width="12" height="28" rx="1" fill="url(#pipeStrap3)" />
+            <rect x="1250" y="6" width="12" height="28" rx="1" fill="url(#pipeStrap3)" />
+        </svg>
+    </div>
+
+    <!-- FAQS SECTION -->
+    <section 
+        id="faqs"
+        class="py-10 md:py-14 bg-white"
+        role="region" 
+        aria-label="Preguntas frecuentes"
+    >
+        <div class="max-w-4xl mx-auto px-[5%] space-y-8">
+            <!-- Section Header -->
+            <div class="text-center space-y-4">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-nordDark tracking-tight">
+                    Preguntas Frecuentes sobre Aislamiento en Coruña
+                </h2>
+                <div class="w-20 h-1 bg-[#1A4580] mx-auto rounded-full"></div>
+            </div>
+
+            <!-- FAQ Accordion Layout (Robust Alpine.js States) -->
+            <div x-data="{ activeAccordion: null }" class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden transition-colors duration-300" :class="activeAccordion === 1 ? 'border-[#1A4580] bg-nordGray' : 'bg-white'">
+                    <button 
+                        @click="activeAccordion = (activeAccordion === 1) ? null : 1"
+                        class="w-full px-6 py-5 text-left font-outfit font-bold text-base sm:text-lg md:text-xl text-nordDark flex items-center justify-between focus:outline-none"
+                        :aria-expanded="(activeAccordion === 1).toString()"
+                    >
+                        <span>¿Es necesario salir de la vivienda durante el insuflado?</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-300 text-[#1A4580]" :class="activeAccordion === 1 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div 
+                        x-show="activeAccordion === 1" 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 max-h-0"
+                        x-transition:enter-end="opacity-100 max-h-screen"
+                        class="px-6 pb-6 text-base text-gray-700 font-medium"
+                        style="display: none;"
+                    >
+                        No, en absoluto. El proceso de insuflado es sumamente limpio y seguro. No genera vapores, olores ni residuos peligrosos. El equipo trabaja desde el exterior (o en interiores de forma focalizada) perforando orificios mínimos de apenas unos centímetros que luego se sellan con mortero del mismo color de la pared.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden transition-colors duration-300" :class="activeAccordion === 2 ? 'border-[#1A4580] bg-nordGray' : 'bg-white'">
+                    <button 
+                        @click="activeAccordion = (activeAccordion === 2) ? null : 2"
+                        class="w-full px-6 py-5 text-left font-outfit font-bold text-base sm:text-lg md:text-xl text-nordDark flex items-center justify-between focus:outline-none"
+                        :aria-expanded="(activeAccordion === 2).toString()"
+                    >
+                        <span>¿Qué materiales aislantes utilizan en Galicia?</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-300 text-[#1A4580]" :class="activeAccordion === 2 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div 
+                        x-show="activeAccordion === 2" 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 max-h-0"
+                        x-transition:enter-end="opacity-100 max-h-screen"
+                        class="px-6 pb-6 text-base text-gray-700 font-medium"
+                        style="display: none;"
+                    >
+                        Para el clima de Galicia, priorizamos materiales hidrófugos de alta calidad como la Lana Mineral Blanca, Lana de Roca ignífuga o la Celulosa ecológica tratada contra el fuego y xilófagos. Estos materiales impiden el asentamiento de humedad por capilaridad en el muro mientras permiten que la casa respire.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden transition-colors duration-300" :class="activeAccordion === 3 ? 'border-[#1A4580] bg-nordGray' : 'bg-white'">
+                    <button 
+                        @click="activeAccordion = (activeAccordion === 3) ? null : 3"
+                        class="w-full px-6 py-5 text-left font-outfit font-bold text-base sm:text-lg md:text-xl text-nordDark flex items-center justify-between focus:outline-none"
+                        :aria-expanded="(activeAccordion === 3).toString()"
+                    >
+                        <span>¿El aislamiento térmico elimina el moho por condensación?</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-300 text-[#1A4580]" :class="activeAccordion === 3 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div 
+                        x-show="activeAccordion === 3" 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 max-h-0"
+                        x-transition:enter-end="opacity-100 max-h-screen"
+                        class="px-6 pb-6 text-base text-gray-700 font-medium"
+                        style="display: none;"
+                    >
+                        Sí, totalmente. El moho se genera cuando el aire interior húmedo entra en contacto con una pared fría que da al exterior (punto de rocío). Al insuflar la cámara de aire, eliminamos ese muro helado, elevando la temperatura de la pared y erradicando el moho y las condensaciones interiores de por vida.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden transition-colors duration-300" :class="activeAccordion === 4 ? 'border-[#1A4580] bg-nordGray' : 'bg-white'">
+                    <button 
+                        @click="activeAccordion = (activeAccordion === 4) ? null : 4"
+                        class="w-full px-6 py-5 text-left font-outfit font-bold text-base sm:text-lg md:text-xl text-nordDark flex items-center justify-between focus:outline-none"
+                        :aria-expanded="(activeAccordion === 4).toString()"
+                    >
+                        <span>¿Cuánto tiempo se tarda en realizar la instalación de aislamiento en una vivienda?</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-300 text-[#1A4580]" :class="activeAccordion === 4 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div 
+                        x-show="activeAccordion === 4" 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 max-h-0"
+                        x-transition:enter-end="opacity-100 max-h-screen"
+                        class="px-6 pb-6 text-base text-gray-700 font-medium"
+                        style="display: none;"
+                    >
+                        El aislamiento insuflado en una vivienda unifamiliar o piso estándar suele completarse en **un solo día**. El proceso se realiza de forma limpia mediante pequeñas perforaciones en la fachada o tabiquería interior, inyectando el material y sellando los orificios de manera invisible al finalizar la jornada.
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden transition-colors duration-300" :class="activeAccordion === 5 ? 'border-[#1A4580] bg-nordGray' : 'bg-white'">
+                    <button 
+                        @click="activeAccordion = (activeAccordion === 5) ? null : 5"
+                        class="w-full px-6 py-5 text-left font-outfit font-bold text-base sm:text-lg md:text-xl text-nordDark flex items-center justify-between focus:outline-none"
+                        :aria-expanded="(activeAccordion === 5).toString()"
+                    >
+                        <span>¿Qué retorno de inversión (ROI) ofrece el calorifugado industrial B2B?</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-300 text-[#1A4580]" :class="activeAccordion === 5 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div 
+                        x-show="activeAccordion === 5" 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 max-h-0"
+                        x-transition:enter-end="opacity-100 max-h-screen"
+                        class="px-6 pb-6 text-base text-gray-700 font-medium"
+                        style="display: none;"
+                    >
+                        El calorifugado de tuberías y equipos industriales ofrece uno de los retornos de inversión más rápidos en ingeniería térmica. En la mayoría de los casos, la inversión en aislamiento de tuberías de vapor o fluidos térmicos se amortiza en **menos de 18 a 24 meses**, gracias a la drástica reducción de las pérdidas de calor y el consiguiente ahorro en la factura de combustible de tu planta.
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden transition-colors duration-300" :class="activeAccordion === 6 ? 'border-[#1A4580] bg-nordGray' : 'bg-white'">
+                    <button 
+                        @click="activeAccordion = (activeAccordion === 6) ? null : 6"
+                        class="w-full px-6 py-5 text-left font-outfit font-bold text-base sm:text-lg md:text-xl text-nordDark flex items-center justify-between focus:outline-none"
+                        :aria-expanded="(activeAccordion === 6).toString()"
+                    >
+                        <span>¿Existen subvenciones o ayudas para el aislamiento térmico en Galicia?</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-300 text-[#1A4580]" :class="activeAccordion === 6 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div 
+                        x-show="activeAccordion === 6" 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 max-h-0"
+                        x-transition:enter-end="opacity-100 max-h-screen"
+                        class="px-6 pb-6 text-base text-gray-700 font-medium"
+                        style="display: none;"
+                    >
+                        Sí, existen importantes subvenciones financiadas por los Fondos Europeos NextGenerationEU y gestionadas a través del Instituto Galego da Vivenda e Solo (IGVS) de la Xunta de Galicia. Estas ayudas para la rehabilitación energética pueden cubrir entre el **40% y el 80% del coste total de la obra**, siempre y cuando se demuestre una reducción mínima del 30% en el consumo de energía primaria no renovable. En Nord Project te asesoramos y facilitamos la documentación técnica necesaria para su solicitud.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer 
+        id="contacto"
+        class="bg-[#151719] text-gray-300 pt-16 pb-8 relative overflow-hidden" 
+        role="contentinfo"
+    >
+        <!-- Shiny Clad Pipe Border Top -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1B365D] via-[#E2E8F0] to-[#1B365D] shadow-[0_1px_5px_rgba(255,255,255,0.2)]"></div>
+
+        <div class="max-w-7xl mx-auto px-[5%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10">
+            <!-- Col 1: Brand Info -->
+            <div class="lg:col-span-4 space-y-4">
+                <a href="#" class="block focus:outline-none" aria-label="Ir al inicio de Nord Project">
+                    <img src="images/LOGO Nord Project 116x70.png" alt="Nord Project Logo" class="h-12 w-auto transition-transform duration-300 hover:scale-105" style="filter: brightness(0) invert(1);">
+                </a>
+                <p class="text-base text-gray-400 font-medium leading-relaxed max-w-sm">
+                    División técnica de revestimiento térmico industrial para plantas químicas, refinerías y fábricas. Eficiencia de fluidos garantizada. Especialistas en aislamiento insuflado en toda Galicia.
+                </p>
+            </div>
+
+            <!-- Col 2: Servicios Links -->
+            <div class="lg:col-span-2 space-y-4">
+                <div class="relative pb-2">
+                    <h3 class="text-lg font-bold text-white font-outfit uppercase tracking-wider">Servicios</h3>
+                    <div class="absolute bottom-0 left-0 w-10 h-[2px] bg-[#235294]"></div>
+                </div>
+                <ul class="space-y-2.5 text-base font-semibold pt-1">
+                    <li>
+                        <a href="calorifugado.html" class="hover:text-blue-300 transition-all duration-300 hover:translate-x-1 transform inline-block">Calorifugado Tuberías</a>
+                    </li>
+                    <li>
+                        <a href="calorifugado.html" class="hover:text-blue-300 transition-all duration-300 hover:translate-x-1 transform inline-block">Depósitos y Silos</a>
+                    </li>
+                    <li>
+                        <a href="calorifugado.html" class="hover:text-blue-300 transition-all duration-300 hover:translate-x-1 transform inline-block">Calderas Industriales</a>
+                    </li>
+                    <li>
+                        <a href="#inicio" class="hover:text-blue-300 transition-all duration-300 hover:translate-x-1 transform inline-block">Aislamiento Residencial</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Contact Info -->
+            <div class="lg:col-span-3 space-y-4">
+                <div class="relative pb-2">
+                    <h3 class="text-lg font-bold text-white font-outfit uppercase tracking-wider">Contacto</h3>
+                    <div class="absolute bottom-0 left-0 w-10 h-[2px] bg-[#235294]"></div>
+                </div>
+                <div class="space-y-3 text-base font-semibold pt-1">
+                    <div class="flex flex-col">
+                        <span class="text-xs text-gray-500 uppercase font-bold tracking-wider">Teléfono</span>
+                        <a href="tel:639878385" class="text-[#63B3ED] hover:text-blue-300 transition-colors duration-200 text-lg font-bold mt-0.5">639 878 385</a>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs text-gray-500 uppercase font-bold tracking-wider">Email</span>
+                        <a href="mailto:norprojetcsctisl@gmail.com" class="text-[#63B3ED] hover:text-blue-300 transition-colors duration-200 text-base font-bold mt-0.5 break-all">norprojetcsctisl@gmail.com</a>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs text-gray-500 uppercase font-bold tracking-wider">Ubicación</span>
+                        <span class="text-gray-400 text-base mt-0.5 leading-snug">A Coruña, Galicia.<br>Trabajamos en toda la comunidad.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 4: Maps / Local SEO -->
+            <div class="lg:col-span-3 space-y-4">
+                <div class="relative pb-2">
+                    <h3 class="text-lg font-bold text-white font-outfit uppercase tracking-wider">Localización</h3>
+                    <div class="absolute bottom-0 left-0 w-10 h-[2px] bg-[#235294]"></div>
+                </div>
+                <div class="w-full h-40 rounded-2xl overflow-hidden border border-gray-800 pt-1">
+                    <iframe src="https://maps.google.com/maps?q=Calle%20Roma%2C%209%2C%2015008%2C%20A%20Coru%C3%B1a&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBFOOTER (Strict constraints) -->
+        <div class="max-w-7xl mx-auto px-[5%] pt-6 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 font-semibold">
+            <div>
+                Aislamientos Coruña | Todos los Derechos Reservados.
+            </div>
+            <div class="flex items-center flex-wrap justify-center gap-2">
+                <span>Diseñado con</span>
+                <img draggable="false" role="img" class="emoji inline-block w-4 h-4 mx-1" alt="❤" src="https://s.w.org/images/core/emoji/17.0.2/svg/2764.svg">
+                <span>por</span>
+                <a href="https://seolife.es" rel="nofollow" target="_blank" class="hover:text-blue-300 transition-colors duration-200">SEOLife.es</a>
+            </div>
+            <div class="flex gap-4">
+                <a href="privacidad.html" rel="nofollow" class="hover:text-blue-300 transition-colors duration-200">Política de Privacidad</a>
+                <span>|</span>
+                <a href="cookies.html" rel="nofollow" class="hover:text-blue-300 transition-colors duration-200">Política de Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE LEAD GENERATION MODAL (No-Alert Constraint compliant) -->
+    <div 
+        x-show="isModalOpen" 
+        class="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-nordDark/70 backdrop-blur-sm"
+        style="display: none;"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+    >
+        <div 
+            @click.away="isModalOpen = false" 
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-95"
+            class="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full shadow-2xl relative border border-gray-100"
+        >
+            <button 
+                @click="isModalOpen = false" 
+                class="absolute top-4 right-4 text-gray-400 hover:text-nordDark transition-colors duration-200 text-3xl focus:outline-none"
+                aria-label="Cerrar modal"
+            >
+                &times;
+            </button>
+
+            <h3 id="modal-title" class="text-xl md:text-2xl font-extrabold text-nordDark mb-4">
+                Solicita Tu Presupuesto Gratis
+            </h3>
+            
+            <form 
+                @submit.prevent="isModalOpen = false; isSuccessOpen = true" 
+                class="space-y-4"
+            >
+                <div>
+                    <label class="block text-base font-bold text-gray-700 mb-1" for="modal-name">Nombre</label>
+                    <input 
+                        type="text" 
+                        id="modal-name" 
+                        x-model="leadName"
+                        required 
+                        placeholder="Nombre completo" 
+                        class="w-full bg-nordGray border border-gray-200 rounded-2xl px-4 py-3 text-base focus:ring-2 focus:ring-nordGold focus:outline-none"
+                    >
+                </div>
+                <div>
+                    <label class="block text-base font-bold text-gray-700 mb-1" for="modal-phone">Teléfono</label>
+                    <input 
+                        type="tel" 
+                        id="modal-phone" 
+                        x-model="leadPhone"
+                        required 
+                        placeholder="Ej: 600 000 000" 
+                        class="w-full bg-nordGray border border-gray-200 rounded-2xl px-4 py-3 text-base focus:ring-2 focus:ring-nordGold focus:outline-none"
+                    >
+                </div>
+                <div>
+                    <label class="block text-base font-bold text-gray-700 mb-1" for="modal-service">Servicio</label>
+                    <select 
+                        id="modal-service" 
+                        x-model="leadService"
+                        class="w-full bg-nordGray border border-gray-200 rounded-2xl px-4 py-3 text-base focus:ring-2 focus:ring-nordGold focus:outline-none"
+                    >
+                        <option value="Paredes (Insuflado)">Paredes (Cámaras de Aire)</option>
+                        <option value="Techos / Áticos">Techos y Cubiertas</option>
+                        <option value="Fachadas (SATE / Proyectado)">Fachadas Completas</option>
+                    </select>
+                </div>
+                <button 
+                    type="submit" 
+                    class="w-full bg-[#235294] hover:bg-blue-600 text-white font-outfit font-extrabold text-lg py-4 rounded-2xl transition-all duration-200"
+                >
+                    Enviar Solicitud
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SUCCESS MESSAGE DIALOG (Replaces alert() and confirm() completely) -->
+    <div 
+        x-show="isSuccessOpen" 
+        class="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-nordDark/70 backdrop-blur-sm"
+        style="display: none;"
+        role="dialog"
+        aria-modal="true"
+    >
+        <div 
+            @click.away="isSuccessOpen = false" 
+            class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl text-center space-y-4 border border-gray-100"
+        >
+            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                ✓
+            </div>
+            <h3 class="text-2xl font-extrabold text-nordDark">¡Solicitud Recibida!</h3>
+            <p class="text-base text-gray-600 font-medium">
+                Gracias <strong x-text="leadName"></strong>. Hemos recibido tu solicitud para aislar <strong x-text="leadService"></strong>. Nos pondremos en contacto contigo en el teléfono <strong x-text="leadPhone"></strong> en menos de 24 horas laborables.
+            </p>
+            <button 
+                @click="isSuccessOpen = false" 
+                class="w-full bg-nordDark hover:bg-nordDark/90 text-white font-outfit font-bold text-lg py-3 rounded-2xl transition-colors duration-200"
+            >
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button 
+        x-show="!scrollAtTop" 
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-y-10"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 translate-y-10"
+        @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        class="fixed bottom-6 right-6 z-40 bg-[#235294] hover:bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#235294] focus:ring-offset-2"
+        aria-label="Volver arriba"
+        style="display: none;"
+    >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path>
+        </svg>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof Swiper !== 'undefined') {
+                const swiper = new Swiper('.mySwiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                    loop: true,
+                    autoplay: {
+                        delay: 4000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 2,
+                            spaceBetween: 30,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                            spaceBetween: 30,
+                        },
+                    },
+                });
+            }
+        });
+    </script>
+</body>
+</html>

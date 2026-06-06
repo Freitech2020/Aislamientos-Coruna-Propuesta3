@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Nord Project - Aislamientos Coruña</title>
+    <meta name="description" content="Contacta con Nord Project (Nort Projects CTI SL). Solicita presupuestos gratuitos de aislamiento térmico o calorifugado industrial en Galicia.">
+    
+    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js CDN for interactive UI states -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                nordGold: {
+                  DEFAULT: '#235294', // Azul Coquilla
+                  dark: '#1A4580', // Azul Industrial
+                  light: '#E2E8F0' // Plata Cromada / Acero Pulido
+                },
+                nordRed: {
+                  DEFAULT: '#1A4580', // Azul Industrial
+                  dark: '#242629', // Gris Grafito / Titanio Oscuro
+                  light: '#235294' // Azul Coquilla
+                },
+                nordDark: '#242629', // Gris Grafito / Titanio Oscuro
+                nordGray: '#F8F9FA'
+              },
+              fontFamily: {
+                sans: ['Plus Jakarta Sans', 'sans-serif'],
+                outfit: ['Outfit', 'sans-serif'],
+              }
+            }
+          }
+        }
+    </script>
+
+    <style>
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.2 !important;
+        }
+        @media (min-width: 768px) {
+            h1, h2, h3, h4 {
+                line-height: 1.25 !important;
+            }
+        }
+        p {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.5 !important;
+        }
+        .long-text {
+            line-height: 1.65 !important;
+        }
+        *:focus-visible {
+            outline: 3px solid #1A4580;
+            outline-offset: 2px;
+        }
+        
+        /* Button style matching index.html */
+        .btn-pipe-coated {
+            position: relative;
+            background: linear-gradient(180deg, #254B80 0%, #1B365D 50%, #12243F 100%);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                inset 0 4px 6px rgba(255, 255, 255, 0.2), 
+                inset 0 -4px 6px rgba(0, 0, 0, 0.4),
+                0 10px 25px rgba(27, 54, 93, 0.5);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        .btn-pipe-coated::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.6s;
+        }
+        .btn-pipe-coated:hover::after {
+            left: 100%;
+            transition: 0.8s ease-in-out;
+        }
+        .btn-pipe-coated:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 
+                inset 0 4px 6px rgba(255, 255, 255, 0.3), 
+                inset 0 -4px 6px rgba(0, 0, 0, 0.5),
+                0 15px 30px rgba(27, 54, 93, 0.7);
+        }
+    </style>
+</head>
+<body 
+    x-data="{ 
+        scrollAtTop: true, 
+        isMobileMenuOpen: false, 
+        isModalOpen: false, 
+        isSuccessOpen: false,
+        leadName: '',
+        leadPhone: '',
+        leadService: 'Paredes (Insuflado)'
+    }" 
+    @scroll.window="scrollAtTop = (window.pageYOffset > 50) ? false : true"
+    class="bg-white text-nordDark antialiased font-sans flex flex-col min-h-screen"
+>
+
+    <!-- NAVIGATION HEADER -->
+    <header 
+        :class="scrollAtTop ? 'bg-white/10 md:bg-transparent py-5 border-b border-white/10' : 'bg-nordDark/95 backdrop-blur-md shadow-lg py-3 border-b border-white/5'"
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        role="banner"
+    >
+        <div class="max-w-7xl mx-auto px-[5%] flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center gap-2 focus:outline-none" aria-label="Ir al inicio de Nord Project">
+                <img src="images/LOGO Nord Project 116x70.png" alt="Nord Project Logo" class="h-10 md:h-12 w-auto transition-transform duration-300 hover:scale-105">
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-6" role="navigation" aria-label="Navegación principal">
+                <a href="index.html#inicio" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Inicio</a>
+                <a href="index.html#beneficios" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Beneficios</a>
+                <a href="index.html#servicios" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Aislamiento</a>
+                <a href="calorifugado.html" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Calorifugado B2B</a>
+                <a href="nosotros.html" class="text-base font-semibold text-white/95 hover:text-blue-300 transition-colors duration-300 uppercase">Nosotros</a>
+                <a href="contacto.html" class="text-base font-semibold text-white/95 hover:text-[#63B3ED] transition-colors duration-300 uppercase">Contacto</a>
+            </nav>
+
+            <!-- Call-to-Action -->
+            <div class="hidden md:flex items-center gap-4">
+                <button 
+                    @click="isModalOpen = true"
+                    class="bg-gradient-to-b from-[#235294] to-[#1A4580] hover:from-[#2a5fa6] hover:to-[#235294] border border-[#235294]/30 shadow-lg text-white font-outfit font-bold text-lg px-6 py-3 rounded-2xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-blue-900/20 focus:outline-none"
+                    aria-haspopup="dialog"
+                >
+                    Presupuesto Rápido
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button 
+                @click="isMobileMenuOpen = !isMobileMenuOpen"
+                class="text-white md:hidden p-2 focus:outline-none transition-colors duration-300"
+                aria-label="Abrir o cerrar menú móvil"
+                :aria-expanded="isMobileMenuOpen.toString()"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path x-show="!isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    <path x-show="isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" style="display: none;" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div 
+            x-show="isMobileMenuOpen" 
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-4"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-4"
+            class="md:hidden absolute top-full left-0 right-0 bg-nordDark border-t border-white/10 py-6 px-[5%] flex flex-col gap-4 shadow-xl"
+            style="display: none;"
+        >
+            <a @click="isMobileMenuOpen = false" href="index.html#inicio" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Inicio</a>
+            <a @click="isMobileMenuOpen = false" href="index.html#beneficios" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Beneficios</a>
+            <a @click="isMobileMenuOpen = false" href="index.html#servicios" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Aislamiento</a>
+            <a @click="isMobileMenuOpen = false" href="calorifugado.html" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Calorifugado B2B</a>
+            <a @click="isMobileMenuOpen = false" href="nosotros.html" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Nosotros</a>
+            <a @click="isMobileMenuOpen = false" href="contacto.html" class="text-lg font-semibold py-2 border-b border-white/10 text-white hover:text-blue-300 transition-colors uppercase">Contacto</a>
+            <button 
+                @click="isMobileMenuOpen = false; isModalOpen = true"
+                class="w-full bg-[#235294] hover:bg-blue-600 text-white font-outfit font-bold text-lg py-4 rounded-2xl transition-colors duration-200 text-center mt-2"
+            >
+                Presupuesto Rápido
+            </button>
+        </div>
+    </header>
+
+    <!-- INNER PAGE HERO -->
+    <section 
+        class="relative pt-32 pb-20 md:pt-40 md:pb-28 flex items-center bg-cover bg-center overflow-hidden" 
+        style="background-image: url('images/why-choose-img1-3.png');"
+    >
+        <div class="absolute inset-0 bg-gradient-to-r from-nordDark via-nordDark/90 to-nordDark/40 backdrop-blur-[2px] z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-[5%] w-full relative z-10 text-white text-center md:text-left">
+            <span class="text-[#63B3ED] font-outfit font-bold tracking-wider text-sm md:text-base uppercase opacity-90">
+                Contacto Directo
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mt-2 text-white">
+                Contacta con Nosotros
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mt-4 font-medium leading-relaxed">
+                Solicita presupuestos gratuitos o asesoramiento sobre aislamiento térmico residencial y calorifugado industrial en Galicia.
+            </p>
+        </div>
+    </section>
+
+    <!-- METALLIC PIPE DIVIDER 1 -->
+    <div class="w-full overflow-hidden bg-transparent leading-[0] select-none -mb-1 relative z-20" aria-hidden="true">
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-10">
+            <defs>
+                <linearGradient id="pipeMetal1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#151719" />
+                    <stop offset="12%" stop-color="#3A3F44" />
+                    <stop offset="30%" stop-color="#7F878D" />
+                    <stop offset="48%" stop-color="#E2E8F0" />
+                    <stop offset="52%" stop-color="#FFFFFF" />
+                    <stop offset="58%" stop-color="#E2E8F0" />
+                    <stop offset="78%" stop-color="#7F878D" />
+                    <stop offset="92%" stop-color="#3A3F44" />
+                    <stop offset="100%" stop-color="#151719" />
+                </linearGradient>
+                <linearGradient id="pipeStrap1" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#2D3033" />
+                    <stop offset="25%" stop-color="#9AA0A6" />
+                    <stop offset="50%" stop-color="#FFFFFF" />
+                    <stop offset="75%" stop-color="#9AA0A6" />
+                    <stop offset="100%" stop-color="#2D3033" />
+                </linearGradient>
+                <filter id="pipeShadow1" x="-5%" y="-10%" width="110%" height="140%">
+                    <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.35"/>
+                </filter>
+            </defs>
+            <rect y="8" width="1440" height="24" fill="url(#pipeMetal1)" filter="url(#pipeShadow1)" />
+            <g stroke="#1F2124" stroke-width="0.5" fill="#E2E8F0" opacity="0.8">
+                <line x1="0" y1="12" x2="1440" y2="12" stroke="#4E5357" stroke-dasharray="8 30" />
+                <line x1="0" y1="28" x2="1440" y2="28" stroke="#4E5357" stroke-dasharray="12 40" />
+            </g>
+            <g filter="url(#pipeShadow1)">
+                <rect x="250" y="6" width="18" height="28" rx="2" fill="url(#pipeStrap1)" />
+                <line x1="250" y1="6" x2="250" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <line x1="268" y1="6" x2="268" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <circle cx="259" cy="10" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+                <circle cx="259" cy="30" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+            </g>
+            <g filter="url(#pipeShadow1)">
+                <rect x="650" y="6" width="18" height="28" rx="2" fill="url(#pipeStrap1)" />
+                <line x1="650" y1="6" x2="650" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <line x1="668" y1="6" x2="668" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <circle cx="659" cy="10" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+                <circle cx="659" cy="30" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+            </g>
+            <g filter="url(#pipeShadow1)">
+                <rect x="1050" y="6" width="18" height="28" rx="2" fill="url(#pipeStrap1)" />
+                <line x1="1050" y1="6" x2="1050" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <line x1="1068" y1="6" x2="1068" y2="34" stroke="#4E5357" stroke-width="0.8" />
+                <circle cx="1059" cy="10" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+                <circle cx="1059" cy="30" r="1.8" fill="#4E5357" stroke="#FFFFFF" stroke-width="0.5" />
+            </g>
+            <rect x="450" y="2" width="10" height="4" fill="#2D3033" />
+            <rect x="447" y="0" width="16" height="2" fill="#E2E8F0" />
+            <rect x="850" y="2" width="10" height="4" fill="#2D3033" />
+            <rect x="847" y="0" width="16" height="2" fill="#E2E8F0" />
+            <rect x="1250" y="2" width="10" height="4" fill="#2D3033" />
+            <rect x="1247" y="0" width="16" height="2" fill="#E2E8F0" />
+        </svg>
+    </div>
+
+    <!-- MAIN CONTACT GRID (White background, premium layouts, clean borders) -->
+    <section class="py-16 bg-white relative z-10">
+        <div class="max-w-7xl mx-auto px-[5%] space-y-12">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Left Column: Contact details (White background cards, soft shadow) -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-sm font-bold text-nordGold font-outfit uppercase tracking-wider">¿Hablamos?</span>
+                        <h2 class="text-3xl font-extrabold text-nordDark tracking-tight mt-1">
+                            Datos de Contacto
+                        </h2>
+                        <p class="text-base text-gray-600 mt-3">
+                            Si lo prefieres, puedes contactar con nosotros directamente a través de cualquiera de nuestros canales de atención técnica y comercial.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 pt-4">
+                        <!-- Card: Phone -->
+                        <div class="flex items-start gap-4 p-5 bg-nordGray rounded-2xl border border-gray-150 shadow-sm">
+                            <div class="w-12 h-12 bg-white rounded-xl border border-gray-200 flex items-center justify-center text-xl shadow-sm">
+                                📞
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-gray-900 font-sans">Teléfono Directo</h4>
+                                <p class="text-lg font-bold text-[#1A4580] mt-0.5">
+                                    <a href="tel:639878385" class="hover:underline">639 878 385</a>
+                                </p>
+                                <p class="text-xs text-gray-500 font-medium mt-1">Horario: Lunes a Viernes, 8:00 - 20:00</p>
+                            </div>
+                        </div>
+
+                        <!-- Card: Email -->
+                        <div class="flex items-start gap-4 p-5 bg-nordGray rounded-2xl border border-gray-150 shadow-sm">
+                            <div class="w-12 h-12 bg-white rounded-xl border border-gray-200 flex items-center justify-center text-xl shadow-sm">
+                                ✉️
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-gray-900 font-sans">Email Técnico</h4>
+                                <p class="text-sm font-bold text-[#1A4580] mt-0.5">
+                                    <a href="mailto:norprojetcsctisl@gmail.com" class="hover:underline">norprojetcsctisl@gmail.com</a>
+                                </p>
+                                <p class="text-xs text-gray-500 font-medium mt-1">Responderemos en menos de 24h laborables.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card: Address -->
+                        <div class="flex items-start gap-4 p-5 bg-nordGray rounded-2xl border border-gray-150 shadow-sm">
+                            <div class="w-12 h-12 bg-white rounded-xl border border-gray-200 flex items-center justify-center text-xl shadow-sm">
+                                📍
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-gray-900 font-sans">Ubicación y Cobertura</h4>
+                                <p class="text-sm font-semibold text-gray-700 mt-0.5">
+                                    <strong>NORT PROJECTS CTI SL</strong>
+                                </p>
+                                <p class="text-sm text-gray-600">A Coruña, Galicia, España</p>
+                                <p class="text-xs text-gray-500 font-medium mt-1">Brindamos cobertura técnica en toda la comunidad gallega.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Lead Form (White Card with thin gray border) -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-lg relative overflow-hidden">
+                        <!-- Accent top bar (pipe steel style) -->
+                        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1B365D] via-[#E2E8F0] to-[#1B365D]"></div>
+                        
+                        <h3 class="text-xl md:text-2xl font-extrabold text-nordDark mb-2">
+                            Formulario de Contacto
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-6 font-semibold">Respuesta en 24h • Estudio y Asesoramiento Gratis.</p>
+
+                        <form 
+                            @submit.prevent="isSuccessOpen = true" 
+                            class="space-y-4"
+                        >
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1" for="name">Nombre y Apellidos</label>
+                                    <input 
+                                        type="text" 
+                                        id="name" 
+                                        x-model="leadName"
+                                        required 
+                                        placeholder="Ej: Juan Pérez" 
+                                        class="w-full bg-nordGray border border-gray-200 rounded-2xl px-4 py-3 text-base text-nordDark placeholder-gray-400 focus:ring-2 focus:ring-nordGold focus:border-nordGold focus:outline-none transition-all duration-200"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1" for="phone">Teléfono de Contacto</label>
+                                    <input 
+                                        type="tel" 
+                                        id="phone" 
+                                        x-model="leadPhone"
+                                        required 
+                                        placeholder="Ej: 600 000 000" 
+                                        class="w-full bg-nordGray border border-gray-200 rounded-2xl px-4 py-3 text-base text-nordDark placeholder-gray-400 focus:ring-2 focus:ring-nordGold focus:border-nordGold focus:outline-none transition-all duration-200"
+                                    >
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1" for="service">Tipo de Servicio Solicitado</label>
+                                <select 
+                                    id="service" 
+                                    x-model="leadService"
+                                    class="w-full bg-nordGray border border-gray-200 rounded-2xl px-4 py-3 text-base text-nordDark focus:ring-2 focus:ring-nordGold focus:border-nordGold focus:outline-none transition-all duration-200"
+                                >
+                                    <option value="Paredes (Insuflado)">Aislamiento Insuflado</option>
+                                    <option value="Trasdosados Térmicos">Aislamiento Trasdosado</option>
+                                    <option value="Techos / Áticos">Aislamiento en Techos</option>
+                                    <option value="Fachadas y Proyectados">Fachadas Completas</option>
+                                    <option value="Calorifugado Industrial B2B">Calorifugado Industrial B2B</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1" for="message">Mensaje o Detalles del Proyecto</label>
+                                <textarea 
+                                    id="message" 
+                                    rows="4" 
+                                    placeholder="Explica brevemente tu caso (metros cuadrados aproximados, problemas de moho o humedades, alcance del calorifugado...)" 
+                                    class="w-full bg-nordGray border border-gray-200 rounded-2xl px-4 py-3 text-base text-nordDark placeholder-gray-400 focus:ring-2 focus:ring-nordGold focus:border-nordGold focus:outline-none transition-all duration-200 resize-none"
+                                ></textarea>
+                            </div>
+
+                            <button 
+                                type="submit" 
+                                class="w-full btn-pipe-coated text-white font-outfit font-extrabold text-lg py-4 rounded-full tracking-wider uppercase transition-all duration-300"
+                            >
+                                Enviar Solicitud
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full width responsive Google Map -->
+            <div class="w-full space-y-4 pt-6">
+                <h3 class="text-xl font-bold text-nordDark font-outfit">Localización de Nuestras Oficinas</h3>
+                <div class="w-full h-96 rounded-3xl overflow-hidden border border-gray-200 shadow-md">
+                    <iframe src="https://maps.google.com/maps?q=Calle%20Roma%2C%209%2C%2015008%2C%20A%20Coru%C3%B1a&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer 
+        class="bg-[#151719] text-gray-300 pt-16 pb-8 relative overflow-hidden mt-auto" 
+        role="contentinfo"
+    >
+        <!-- Shiny Clad Pipe Border Top -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1B365D] via-[#E2E8F0] to-[#1B365D] shadow-[0_1px_5px_rgba(255,255,255,0.2)]"></div>
+
+        <div class="max-w-7xl mx-auto px-[5%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10">
+            <!-- Col 1: Brand Info -->
+            <div class="lg:col-span-4 space-y-4">
+                <a href="index.html" class="block focus:outline-none" aria-label="Ir al inicio de Nord Project">
+                    <img src="images/LOGO Nord Project 116x70.png" alt="Nord Project Logo" class="h-12 w-auto transition-transform duration-300 hover:scale-105" style="filter: brightness(0) invert(1);">
+                </a>
+                <p class="text-base text-gray-400 font-medium leading-relaxed max-w-sm">
+                    División técnica de revestimiento térmico industrial para plantas químicas, refinerías y fábricas. Eficiencia de fluidos garantizada. Especialistas en aislamiento insuflado en toda Galicia.
+                </p>
+            </div>
+
+            <!-- Col 2: Servicios Links -->
+            <div class="lg:col-span-2 space-y-4">
+                <div class="relative pb-2">
+                    <h3 class="text-lg font-bold text-white font-outfit uppercase tracking-wider">Servicios</h3>
+                    <div class="absolute bottom-0 left-0 w-10 h-[2px] bg-[#235294]"></div>
+                </div>
+                <ul class="space-y-2.5 text-base font-semibold pt-1">
+                    <li>
+                        <a href="calorifugado.html" class="hover:text-blue-300 transition-all duration-300 hover:translate-x-1 transform inline-block">Calorifugado Tuberías</a>
+                    </li>
+                    <li>
+                        <a href="calorifugado.html" class="hover:text-blue-300 transition-all duration-300 hover:translate-x-1 transform inline-block">Depósitos y Silos</a>
+                    </li>
+                    <li>
+                        <a href="calorifugado.html" class="hover:text-blue-300 transition-all duration-300 hover:translate-x-1 transform inline-block">Calderas Industriales</a>
+                    </li>
+                    <li>
+                        <a href="index.html#inicio" class="hover:text-blue-300 transition-all duration-300 hover:translate-x-1 transform inline-block">Aislamiento Residencial</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Contact Info -->
+            <div class="lg:col-span-3 space-y-4">
+                <div class="relative pb-2">
+                    <h3 class="text-lg font-bold text-white font-outfit uppercase tracking-wider">Contacto</h3>
+                    <div class="absolute bottom-0 left-0 w-10 h-[2px] bg-[#235294]"></div>
+                </div>
+                <div class="space-y-3 text-base font-semibold pt-1">
+                    <div class="flex flex-col">
+                        <span class="text-xs text-gray-500 uppercase font-bold tracking-wider">Teléfono</span>
+                        <a href="tel:639878385" class="text-[#63B3ED] hover:text-blue-300 transition-colors duration-200 text-lg font-bold mt-0.5">639 878 385</a>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs text-gray-500 uppercase font-bold tracking-wider">Email</span>
+                        <a href="mailto:norprojetcsctisl@gmail.com" class="text-[#63B3ED] hover:text-blue-300 transition-colors duration-200 text-base font-bold mt-0.5 break-all">norprojetcsctisl@gmail.com</a>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs text-gray-500 uppercase font-bold tracking-wider">Ubicación</span>
+                        <span class="text-gray-400 text-base mt-0.5 leading-snug">A Coruña, Galicia.<br>Trabajamos en toda la comunidad.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 4: Maps / Local SEO -->
+            <div class="lg:col-span-3 space-y-4">
+                <div class="relative pb-2">
+                    <h3 class="text-lg font-bold text-white font-outfit uppercase tracking-wider">Localización</h3>
+                    <div class="absolute bottom-0 left-0 w-10 h-[2px] bg-[#235294]"></div>
+                </div>
+                <div class="w-full h-40 rounded-2xl overflow-hidden border border-gray-800 pt-1">
+                    <iframe src="https://maps.google.com/maps?q=Calle%20Roma%2C%209%2C%2015008%2C%20A%20Coru%C3%B1a&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBFOOTER (Strict constraints) -->
+        <div class="max-w-7xl mx-auto px-[5%] pt-6 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 font-semibold">
+            <div>
+                Aislamientos Coruña | Todos los Derechos Reservados.
+            </div>
+            <div class="flex items-center flex-wrap justify-center gap-2">
+                <span>Diseñado con</span>
+                <img draggable="false" role="img" class="emoji inline-block w-4 h-4 mx-1" alt="❤" src="https://s.w.org/images/core/emoji/17.0.2/svg/2764.svg">
+                <span>por</span>
+                <a href="https://seolife.es" rel="nofollow" target="_blank" class="hover:text-blue-300 transition-colors duration-200">SEOLife.es</a>
+            </div>
+            <div class="flex gap-4">
+                <a href="privacidad.html" rel="nofollow" class="hover:text-blue-300 transition-colors duration-200">Política de Privacidad</a>
+                <span>|</span>
+                <a href="cookies.html" rel="nofollow" class="hover:text-blue-300 transition-colors duration-200">Política de Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE LEAD GENERATION MODAL -->
+    <div 
+        x-show="isModalOpen" 
+        class="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-nordDark/70 backdrop-blur-sm"
+        style="display: none;"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+    >
+        <div 
+            @click.away="isModalOpen = false" 
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-95"
+            class="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full shadow-2xl relative border border-gray-100 text-nordDark"
+        >
+            <button 
+                @click="isModalOpen = false" 
+                class="absolute top-4 right-4 text-gray-400 hover:text-nordDark transition-colors duration-200 text-3xl focus:outline-none"
+                aria-label="Cerrar modal"
+            >
+                &times;
+            </button>
+
+            <h3 id="modal-title" class="text-xl md:text-2xl font-extrabold text-nordDark mb-4">
+                Solicita Tu Presupuesto Gratis
+            </h3>
+            
+            <form 
+                @submit.prevent="isModalOpen = false; isSuccessOpen = true" 
+                class="space-y-4"
+            >
+                <div>
+                    <label class="block text-base font-bold text-gray-700 mb-1" for="modal-name">Nombre</label>
+                    <input 
+                        type="text" 
+                        id="modal-name" 
+                        x-model="leadName"
+                        required 
+                        placeholder="Nombre completo" 
+                        class="w-full bg-nordGray border border-gray-200 rounded-2xl px-4 py-3 text-base focus:ring-2 focus:ring-nordGold focus:outline-none"
+                    >
+                </div>
+                <div>
+                    <label class="block text-base font-bold text-gray-700 mb-1" for="modal-phone">Teléfono</label>
+                    <input 
+                        type="tel" 
+                        id="modal-phone" 
+                        x-model="leadPhone"
+                        required 
+                        placeholder="Ej: 600 000 000" 
+                        class="w-full bg-nordGray border border-gray-200 rounded-2xl px-4 py-3 text-base focus:ring-2 focus:ring-nordGold focus:outline-none"
+                    >
+                </div>
+                <div>
+                    <label class="block text-base font-bold text-gray-700 mb-1" for="modal-service">Servicio</label>
+                    <select 
+                        id="modal-service" 
+                        x-model="leadService"
+                        class="w-full bg-nordGray border border-gray-200 rounded-2xl px-4 py-3 text-base focus:ring-2 focus:ring-nordGold focus:outline-none"
+                    >
+                        <option value="Paredes (Insuflado)">Paredes (Cámaras de Aire)</option>
+                        <option value="Techos / Áticos">Techos y Cubiertas</option>
+                        <option value="Fachadas (SATE / Proyectado)">Fachadas Completas</option>
+                        <option value="Calorifugado Industrial B2B">Calorifugado Industrial B2B</option>
+                    </select>
+                </div>
+                <button 
+                    type="submit" 
+                    class="w-full bg-[#235294] hover:bg-blue-600 text-white font-outfit font-extrabold text-lg py-4 rounded-2xl transition-all duration-200"
+                >
+                    Enviar Solicitud
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SUCCESS MESSAGE DIALOG -->
+    <div 
+        x-show="isSuccessOpen" 
+        class="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-nordDark/70 backdrop-blur-sm"
+        style="display: none;"
+        role="dialog"
+        aria-modal="true"
+    >
+        <div 
+            @click.away="isSuccessOpen = false" 
+            class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl text-center space-y-4 border border-gray-100 text-nordDark"
+        >
+            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                ✓
+            </div>
+            <h3 class="text-2xl font-extrabold text-nordDark">¡Solicitud Recibida!</h3>
+            <p class="text-base text-gray-600 font-medium">
+                Gracias <strong x-text="leadName"></strong>. Hemos recibido tu solicitud para <strong x-text="leadService"></strong>. Nos pondremos en contacto contigo en el teléfono <strong x-text="leadPhone"></strong> en menos de 24 horas laborables.
+            </p>
+            <button 
+                @click="isSuccessOpen = false" 
+                class="w-full bg-nordDark hover:bg-nordDark/90 text-white font-outfit font-bold text-lg py-3 rounded-2xl transition-colors duration-200"
+            >
+                Entendido
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
